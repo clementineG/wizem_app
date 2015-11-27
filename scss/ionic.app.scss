@@ -15,11 +15,31 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
-
-
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+
+.max_height {
+  height: 100%;
+}
+
+.height_3 {
+  height: 34%;
+}
+
+.bc-transparent {
+  background-color: transparent;
+}
+
+/***** Modify Angular Material *****/
+
+md-input-container {
+  padding-bottom: 10px;
+}
+
+.md-button {
+  margin: 0;
+}
 
