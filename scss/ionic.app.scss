@@ -15,11 +15,22 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+$energized: #263238;
+$balanced: #AFB42B;
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+
+body {
+  box-sizing: border-box;
+}
+
+ion-view.pane {
+  //background-color: #263238;
+}
 
 .max_height {
   height: 100%;
@@ -33,10 +44,70 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   background-color: transparent;
 }
 
-/***** Modify Angular Material *****/
+.no-margin {
+  margin: 0;
+}
+
+.ion-nav-bar {
+  font-size: 20px;
+  letter-spacing: .005em;
+  box-sizing: border-box;
+  font-weight: 400;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+  height: 64px;
+  max-height: 64px;
+  padding: 0 16px;
+  margin: 0;
+}
+
+.bar .title {
+  line-height: 64px;
+  font-size: 20px;
+}
+
+.menu-items .has-header {
+  top: 64px;
+}
+
+ion-content.has-header {
+  top: 0;
+}
+
+.item {
+  cursor: pointer;
+}
+
+/***** Platform Android *****/
+.platform-android .bar .title {
+  line-height: 64px;
+}
+
+/***** Angular Material *****/
+
+md-content {
+  background-color: #263238;
+  height: 100%;
+}
 
 md-input-container {
   padding-bottom: 10px;
+}
+
+md-input-container label {
+  color: #FFFFFF;
+}
+
+md-input-container:not(.md-input-invalid).md-input-focused label {
+  color: #AFB42B;
 }
 
 .md-button {

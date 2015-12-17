@@ -1,6 +1,6 @@
 {
   "name": "wizem",
-  "app_id": "",
+  "app_id": "85a9f3da",
   "gulpStartupTasks": [
     "sass",
     "watch"

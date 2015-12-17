@@ -1,0 +1,31 @@
+<ion-view>
+    <md-content layout-padding>
+        <form ng-submit="subscribe(mail, pseudo, password)" ng-show="!isLoading">
+            <md-input-container class="md-block">
+                <label>Email</label>
+                <input required id="mail" type="email" ng-model="mail" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" >
+                <div ng-messages="mail.$error" role="alert">
+                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                        Your email must be between 10 and 100 characters long and look like an e-mail address.
+                    </div>
+                </div>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Login</label>
+                <input id="username" type="text" minlenght="3" ng-model="username">
+            </md-input-container>
+
+            <md-input-container>
+                <label>Mot de passe</label>
+                <input type="password" id="password" ng-model="password">
+            </md-input-container>
+
+            <md-input-container>
+                <md-button class="md-raised md-primary" type="submit">Créer un compte</md-button>
+            </md-input-container>
+        </form>
+
+        <md-progress-circular md-mode="indeterminate" ng-show="isLoading"></md-progress-circular>
+    </md-content>
+</ion-view>
