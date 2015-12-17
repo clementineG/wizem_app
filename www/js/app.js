@@ -7,7 +7,8 @@ angular.module('wizem', [
     'ngMaterial',
     'ngCordovaOauth',
     'restangular',
-    'userService'
+    'userService',
+    'ngMessages'
 ])
 
     .run(function($ionicPlatform, UserService, $state) {
@@ -63,7 +64,7 @@ angular.module('wizem', [
                 url: '',
                 abstract: true,
                 templateUrl: 'templates/menu.html',
-                controller: 'AppCtrl'
+                controller: 'LoginCtrl'
             })
 
             .state('app.home', {

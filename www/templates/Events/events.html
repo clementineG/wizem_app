@@ -1,25 +1,12 @@
 <ion-view view-title="Mes évènements">
-    <ion-content scrollbar-y="console.log('toto')">
-        <div class="card">
+    <ion-content layout-padding no-scroll-padding>
+        <div ng-show="!message" ng-repeat="event in eventsList" class="card" ng-click="test()">
             <div class="item item-text-wrap">
-                <h2 class="balanced">Titre</h2>
-                <p>63 rue Borie, 33300 Bordeaux</p>
-                <p>Magre Clément, Capdeville Mathieu, ...</p>
+                {{event}}
             </div>
         </div>
-        <div class="card">
-            <div class="item item-text-wrap">
-                <h3>Titre</h3>
-                <p>63 rue Borie, 33300 Bordeaux</p>
-                <p>Magre Clément, Capdeville Mathieu, ...</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="item item-text-wrap">
-                <h3>Titre</h3>
-                <p>63 rue Borie, 33300 Bordeaux</p>
-                <p>Magre Clément, Capdeville Mathieu, ...</p>
-            </div>
+        <div ng-show="message" class="text-center">
+            <h4>{{message}}</h4>
         </div>
     </ion-content>
 </ion-view>

@@ -5,9 +5,4 @@ angular.module('appCtrl', [])
 
         $scope.user = UserService.getFromLocalStorage();
 
-        $scope.logout = function() {
-                UserService.deleteLocalStorage();
-                $state.go('login');
-        }
-
     }]);
