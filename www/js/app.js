@@ -2,6 +2,7 @@ angular.module('wizem', [
     'ionic',
     'loginCtrl',
     'appCtrl',
+    'eventCtrl',
     'profileCtrl',
     'ngMaterial',
     'ngCordovaOauth',
@@ -90,7 +91,7 @@ angular.module('wizem', [
                 views: {
                     Home: {
                         templateUrl: 'templates/events/newEvent.html',
-                        controller: 'AppCtrl'
+                        controller: 'EventCtrl'
                     }
                 }
             })
@@ -100,7 +101,7 @@ angular.module('wizem', [
                 views: {
                     Home: {
                         templateUrl: 'templates/events/events.html',
-                        controller: 'AppCtrl'
+                        controller: 'EventCtrl'
                     }
                 }
             });
