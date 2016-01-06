@@ -2,11 +2,13 @@ angular.module('wizem', [
     'ionic',
     'loginCtrl',
     'appCtrl',
+    'eventCtrl',
     'profileCtrl',
     'ngMaterial',
     'ngCordovaOauth',
     'restangular',
-    'userService'
+    'userService',
+    'ngMessages'
 ])
 
     .run(function($ionicPlatform, UserService, $state) {
@@ -41,7 +43,7 @@ angular.module('wizem', [
         $ionicConfigProvider.backButton.previousTitleText(false);
         $ionicConfigProvider.backButton.text("");
 
-        RestangularProvider.setBaseUrl('http://localhost:8888/Wizem/web/app_dev.php/api/');
+        RestangularProvider.setBaseUrl('http://localhost/ESTEI_M2/wizem_site/web/app_dev.php/api/');
         RestangularProvider.setDefaultHeaders({"Content-type":"application/json"});
         RestangularProvider.setRequestSuffix('.json');
 
@@ -62,7 +64,7 @@ angular.module('wizem', [
                 url: '',
                 abstract: true,
                 templateUrl: 'templates/menu.html',
-                controller: 'AppCtrl'
+                controller: 'LoginCtrl'
             })
 
             .state('app.home', {
@@ -79,7 +81,17 @@ angular.module('wizem', [
                 url: '/profile',
                 views: {
                     Home: {
-                        templateUrl: 'templates/profile.html',
+                        templateUrl: 'templates/profile/profile.html',
+                        controller: 'ProfileCtrl'
+                    }
+                }
+            })
+
+            .state('app.editProfile', {
+                url: '/profile/edit',
+                views: {
+                    Home: {
+                        templateUrl: 'templates/profile/editProfile.html',
                         controller: 'ProfileCtrl'
                     }
                 }
@@ -89,8 +101,8 @@ angular.module('wizem', [
                 url: '/newEvent',
                 views: {
                     Home: {
-                        templateUrl: 'templates/newEvent.html',
-                        controller: 'AppCtrl'
+                        templateUrl: 'templates/events/newEvent.html',
+                        controller: 'EventCtrl'
                     }
                 }
             })
@@ -99,8 +111,8 @@ angular.module('wizem', [
                 url: '/events',
                 views: {
                     Home: {
-                        templateUrl: 'templates/events.html',
-                        controller: 'AppCtrl'
+                        templateUrl: 'templates/events/events.html',
+                        controller: 'EventCtrl'
                     }
                 }
             });

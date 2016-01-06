@@ -8,7 +8,8 @@ angular.module('wizem', [
     'ngCordovaOauth',
     'restangular',
     'userService',
-    'ngMessages'
+    'ngMessages',
+    'ionic-datepicker'
 ])
 
     .run(function($ionicPlatform, UserService, $state) {
@@ -43,7 +44,7 @@ angular.module('wizem', [
         $ionicConfigProvider.backButton.previousTitleText(false);
         $ionicConfigProvider.backButton.text("");
 
-        RestangularProvider.setBaseUrl('http://localhost:8888/Wizem/web/app_dev.php/api/');
+        RestangularProvider.setBaseUrl('http://localhost/ESTEI_M2/wizem_site/web/app_dev.php/api/');
         RestangularProvider.setDefaultHeaders({"Content-type":"application/json"});
         RestangularProvider.setRequestSuffix('.json');
 
@@ -82,6 +83,16 @@ angular.module('wizem', [
                 views: {
                     Home: {
                         templateUrl: 'templates/profile/profile.html',
+                        controller: 'ProfileCtrl'
+                    }
+                }
+            })
+
+            .state('app.editProfile', {
+                url: '/profile/edit',
+                views: {
+                    Home: {
+                        templateUrl: 'templates/profile/editProfile.html',
                         controller: 'ProfileCtrl'
                     }
                 }
