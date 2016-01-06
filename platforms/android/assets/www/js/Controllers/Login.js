@@ -8,34 +8,17 @@ angular.module('loginCtrl', [])
         var UsersLogins = Restangular.all('users/logins');
         var Users = Restangular.all('users');
 
-        //Users.getList().then(function(users) {
-        //    $scope.users = users;
-        //    //console.log($scope.users);
-        //}, function errorCallback(error) {
-        //    console.log(error);
-        //});
-        //
-        //var newUser = {"email":"f@f.com", "password":"f"};
-        //
-        //console.log(newUser);
-
-        //Users.post(newUser).then(function(result) {
-        //    console.log(result);
-        //}, function errorCallback(error) {
-        //    console.log(error);
-        //});
-
-        $scope.connexion = function(mail, username, password) {
+        $scope.connexion = function(username, password) {
             $scope.isLoading = true;
 
-            var data = {"email": mail, "username": username, "password": password};
+            var data = {"username": username, "password": password};
 
             UsersLogins.post(data).then(function(user) {
-                $scope.isLoading = false;
                 UserService.saveToLocalStorage(user);
+                $scope.isLoading = false;
                 $state.go('app.home');
             }, function errorCallback(error) {
-                console.log(error);
+                console.log(error.data.message);
                 $mdDialog.show(
                     $mdDialog.alert()
                         .clickOutsideToClose(true)
@@ -66,15 +49,18 @@ angular.module('loginCtrl', [])
             console.log(data);
 
             Users.post(data).then(function(user) {
-                console.log(user);
                 $scope.isLoading = false;
-                //$scope.pseudo = user.pseudo;
-                //$scope.password = user.password;
-                //$state.go('login');
+                UserService.saveToLocalStorage(user);
+                $state.go('app.home');
             }, function errorCallback(error) {
-                console.log(error)
+                console.log(error);
                 $scope.isLoading = false;
             });
+        };
+
+        $scope.logout = function() {
+            UserService.deleteLocalStorage();
+            $state.go('login');
         }
 
     }]);

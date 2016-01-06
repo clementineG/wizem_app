@@ -1,11 +1,7 @@
 <ion-view>
     <md-content layout-padding>
-        <form ng-submit="connexion(pseudo, password)" ng-show="!isLoading">
-            <md-input-container>
-                <label>Email</label>
-                <input id="username" type="email" ng-model="mail">
-            </md-input-container>
 
+        <form ng-submit="connexion(username, password)" ng-show="!isLoading">
             <md-input-container>
                 <label>Login</label>
                 <input id="username" type="text" minlenght="3" ng-model="username">
@@ -24,5 +20,6 @@
         </form>
 
         <md-progress-circular md-mode="indeterminate" ng-show="isLoading"></md-progress-circular>
+
     </md-content>
 </ion-view>

@@ -9137,6 +9137,9 @@ ion-content.has-header {
 .item {
   cursor: pointer; }
 
+.no-scroll-padding {
+  padding-top: 8px; }
+
 /***** Platform Android *****/
 .platform-android .bar .title {
   line-height: 64px; }
@@ -9152,8 +9155,8 @@ md-input-container {
 md-input-container label {
   color: #FFFFFF; }
 
-md-input-container:not(.md-input-invalid).md-input-focused label {
-  color: #AFB42B; }
-
 .md-button {
   margin: 0; }
+
+textarea, input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="search"] {
+  color: #FFFFFF; }

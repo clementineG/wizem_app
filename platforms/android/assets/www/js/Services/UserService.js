@@ -16,7 +16,7 @@ angular.module('userService', [])
                 return 'Saved';
             },
             deleteLocalStorage: function() {
-                window.localStorage.clear();
+                window.localStorage.removeItem('user');
                 $ionicHistory.clearCache();
                 $ionicHistory.clearHistory();
             }

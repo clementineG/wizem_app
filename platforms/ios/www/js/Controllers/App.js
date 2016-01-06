@@ -5,13 +5,4 @@ angular.module('appCtrl', [])
 
         $scope.user = UserService.getFromLocalStorage();
 
-        var id = user.id;
-        var events = Restangular.all('users/' + id + '/events');
-        //console.log(events);
-
-        $scope.logout = function() {
-                UserService.deleteLocalStorage();
-                $state.go('login');
-        }
-
     }]);
