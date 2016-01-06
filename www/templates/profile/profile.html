@@ -1,16 +1,58 @@
 <ion-view view-title="Profil">
-    <ion-content layout-padding>
-        <div flex class="text-center" >
-            <div flex class="section_cover">
+    <md-content class="md-padding" layout="row" layout-wrap layout-align="center start" layout-xs="column">
+        <div flex layout="column">
+
+            <div class="section_cover" >
                 <h2>{{user.username}}</h2>
                 {{user.firstname}}{{user.lastname}}
             </div>
 
             <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                <md-button class="md-fab md-fab-top-right md-mini md-primary" ui-sref="app.editProfile" aria-label="Eat cake">
+                <md-button class="md-fab md-fab-top-right md-mini md-primary" ui-sref="app.editProfile"
+                           aria-label="Eat cake">
                     <md-icon md-svg-icon="pencil" style="color: white;"></md-icon>
                 </md-button>
             </section>
+            <!-- Section statistique de l'utilisateur -->
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">25{{nbFriends}}</span>
+                        <span class="md-subhead">Amis sur Wizem</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media">
+                            <md-icon md-svg-icon="account-multiple" style="color: lightseagreen;"></md-icon>
+                        </div>
+                    </md-card-title-media>
+                </md-card-title>
+            </md-card>
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">10{{nbAccepted}}</span>
+                        <span class="md-subhead">Events suivis</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media">
+                            <md-icon md-svg-icon="calendar-multiple-check" style="color: lightseagreen;"></md-icon>
+                        </div>
+                    </md-card-title-media>
+                </md-card-title>
+            </md-card>
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">3{{nbOwned}}</span>
+                        <span class="md-subhead">Events organisés</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media">
+                            <md-icon md-svg-icon="clipboard-text" style="color: lightseagreen;"></md-icon>
+                        </div>
+                    </md-card-title-media>
+                </md-card-title>
+            </md-card>
         </div>
-    </ion-content>
+    </md-content>
 </ion-view>

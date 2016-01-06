@@ -22,7 +22,7 @@ angular.module('profileCtrl', [])
             modalHeaderColor: 'bar-positive', //Optional
             modalFooterColor: 'bar-positive', //Optional
             dateFormat: 'dd-MM-yyyy', //Optional
-            closeOnSelect: 'true', //Optional
+            closeOnSelect: true, //Optional
             callback: function (val) {  //Mandatory
                 datePickerBirthdayCallback(val);
             },
