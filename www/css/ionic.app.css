@@ -9089,21 +9089,88 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+/* *****************************************************************************
+                                    App's CSS
+***************************************************************************** */
 body {
   box-sizing: border-box; }
 
-.max_height {
-  height: 100%; }
-
-.height_3 {
-  height: 34%; }
-
+/***** Loader *****/
 .bc-transparent {
   background-color: transparent; }
 
-.no-margin {
-  margin: 0; }
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
 
+/***** Margin *****/
+.no-margin {
+  margin: 0 !important; }
+
+.no-margin-top {
+  margin-top: 0 !important; }
+
+.no-margin-right {
+  margin-right: 0 !important; }
+
+.no-margin-bottom {
+  margin-bottom: 0 !important; }
+
+.no-margin-left {
+  margin-left: 0 !important; }
+
+.margin {
+  margin: 10px !important; }
+
+.margin-top {
+  margin-top: 10px !important; }
+
+.margin-right {
+  margin-right: 10px !important; }
+
+.margin-bottom {
+  margin-bottom: 10px !important; }
+
+.margin-left {
+  margin-left: 10px !important; }
+
+/***** Padding *****/
+.no-scroll-padding {
+  padding-top: 8px; }
+
+.padding-medium {
+  padding: 25px !important; }
+
+.padding-top-medium {
+  padding-top: 25px !important; }
+
+.padding-right-medium {
+  padding-right: 25px !important; }
+
+.padding-bottom-medium {
+  padding-bottom: 25px !important; }
+
+.padding-left-medium {
+  padding-left: 25px !important; }
+
+.padding-large {
+  padding: 50px !important; }
+
+.padding-top-large {
+  padding-top: 50px !important; }
+
+.padding-right-large {
+  padding-right: 50px !important; }
+
+.padding-bottom-large {
+  padding-bottom: 50px !important; }
+
+.padding-left-large {
+  padding-left: 50px !important; }
+
+/***** Nav Bar *****/
 .ion-nav-bar {
   font-size: 20px;
   letter-spacing: .005em;
@@ -9137,14 +9204,34 @@ ion-content.has-header {
 .item {
   cursor: pointer; }
 
-.no-scroll-padding {
-  padding-top: 8px; }
+/***** Inputs *****/
+textarea, input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="search"] {
+  color: #FFFFFF; }
 
-/***** Platform Android *****/
+/***** Events *****/
+.date {
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin: 20px 0 20px 10px;
+  border: 1px #dddddd solid;
+  border-radius: 25px;
+  max-height: 45px !important;
+  max-width: 45px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
+
+.card {
+  margin: 10px; }
+
+/* *****************************************************************************
+                                 Platform Android
+***************************************************************************** */
 .platform-android .bar .title {
   line-height: 64px; }
 
-/***** Angular Material *****/
+/* *****************************************************************************
+                                 Angular Material
+***************************************************************************** */
 md-content {
   background-color: #263238;
   height: 100%; }
@@ -9157,6 +9244,3 @@ md-input-container label {
 
 .md-button {
   margin: 0; }
-
-textarea, input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="search"] {
-  color: #FFFFFF; }
