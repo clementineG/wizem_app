@@ -4,6 +4,7 @@ angular.module('wizem', [
     'appCtrl',
     'eventCtrl',
     'profileCtrl',
+    'friendCtrl',
     'ngMaterial',
     'ngCordovaOauth',
     'restangular',
@@ -103,6 +104,26 @@ angular.module('wizem', [
                     Home: {
                         templateUrl: 'templates/events/events.html',
                         controller: 'EventCtrl'
+                    }
+                }
+            })
+
+            .state('app.viewEvent', {
+                url: '/view-event/:eventId',
+                views: {
+                    Home: {
+                        templateUrl: 'templates/events/viewEvent.html',
+                        controller: 'EventCtrl'
+                    }
+                }
+            })
+
+            .state('app.friends', {
+                url: '/friends',
+                views: {
+                    Home: {
+                        templateUrl: 'templates/friends.html',
+                        controller: 'FriendCtrl'
                     }
                 }
             });

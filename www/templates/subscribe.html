@@ -1,7 +1,7 @@
 <ion-view>
     <md-content layout-padding>
 
-        <md-button class="md-icon-button md-primary" aria-label="Retour" ui-sref="login">
+        <md-button class="md-icon-button md-primary" aria-label="Retour" ui-sref="login" ng-show="!isLoading">
             <md-icon md-svg-icon="arrow-left" style="color: white;"></md-icon>
         </md-button>
 
@@ -22,7 +22,7 @@
                 <input name="username" type="text" ng-model="username" required minlenght="3">
                 <div ng-messages="subscribeForm.username.$error" role="alert">
                     <!--<div ng-message="required">Ce champ est obligatoire !</div>-->
-                    <div ng-message="minlength">Ce login est trop courte !</div>
+                    <div ng-message="minlength">Le login doit avoir au moins 3 caractères !</div>
                 </div>
             </md-input-container>
 
@@ -40,7 +40,9 @@
             </md-input-container>
         </form>
 
-        <md-progress-circular md-mode="indeterminate" ng-show="isLoading"></md-progress-circular>
+        <div class="loader">
+            <md-progress-circular md-mode="indeterminate" ng-show="isLoading"></md-progress-circular>
+        </div>
 
     </md-content>
 </ion-view>

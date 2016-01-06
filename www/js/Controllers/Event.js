@@ -6,17 +6,22 @@ angular.module('eventCtrl', [])
         $scope.user = UserService.getFromLocalStorage();
 
         var id = user.id;
-        var events = Restangular.all('users/' + id + '/events');
+        var idEvent = $stateParams.eventId;
 
-        events.getList().then(function(result) {
+        var Events = Restangular.all('users/' + id + '/events');
+        var Event = Restangular.all('events/' + idEvent);
+
+        Events.getList().then(function(result) {
             $scope.eventsList = result;
+            //console.log(result);
         }, function errorCallback(error) {
             console.log(error);
             $scope.message = "Vous n'avez pas d'évènement, allez en créer un de suite !";
         });
 
-        $scope.test = function() {
-            console.log('toto');
-        }
+        Restangular.one('events', idEvent).get().then(function(result) {
+            console.log(result);
+            $scope.event = result;
+        });
 
     }]);
