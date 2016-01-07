@@ -6,6 +6,7 @@ angular.module('wizem', [
     'profileCtrl',
     'friendCtrl',
     'ngMaterial',
+    'ngCordova',
     'ngCordovaOauth',
     'restangular',
     'userService',

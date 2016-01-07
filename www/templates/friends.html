@@ -1,5 +1,16 @@
 <ion-view view-title="Mes amis">
-    <ion-content>
+    <md-content class="md-padding" layout="row" layout-wrap layout-align="center start" layout-xs="column">
+        <md-list flex ng-cloak>
+            <md-subheader class="md-no-sticky">Contacts Wizem</md-subheader>
+            <md-list-item ng-repeat="person in friends" >
+                <img alt="{{ person.username }}" src="http://unsplash.it/40/40" class="md-avatar"/>
+                {{ person.img }}
+                <md-icon md-svg-icon="human-child"
+                         aria-label="Open Chat" class="md-secondary md-hue-3"
+                         ng-class="{'md-primary': person.newMessage}" style="color: lightseagreen;"></md-icon>
+                <p>{{ person.username }}</p>
 
-    </ion-content>
+            </md-list-item>
+        </md-list>
+    </md-content>
 </ion-view>
