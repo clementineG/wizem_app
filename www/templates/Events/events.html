@@ -1,21 +1,25 @@
 <ion-view view-title="Mes évènements">
-    <ion-content no-scroll-padding>
-        <div ng-show="!message" ng-repeat="event in eventsList" layout="row">
-            <div class="date text-center" flex="15">
+    <md-content no-scroll-padding>
+        <div ng-show="!message" ng-repeat="event in eventsList | orderBy : event.date : true" layout="row">
+            <div ng-if="event.date" class="date text-center" flex="15">
                 <p class="no-margin">{{event.date | date:'dd'}}</p>
                 <p class="no-margin">{{event.date | date:'MMM'}}</p>
+            </div>
+            <div ng-if="!event.date" class="date text-center" flex="15">
+                <p class="no-margin">Pas</p>
+                <p class="no-margin">Défini</p>
             </div>
             <div class="item item-text-wrap card" ui-sref="app.viewEvent({eventId:event.id})" flex>
                 <h2>{{event.type}}</h2>
 
-                <p ng-if="event.placeEvent" class="no-margin-bottom">{{event.place}}</p>
-                <p ng-if="!event.placeEvent" class="no-margin-bottom">Pas de lieux encore définitif.</p>
+                <p ng-if="event.place" class="no-margin-bottom">{{event.place}}</p>
+                <p ng-if="!event.place" class="no-margin-bottom">Pas de lieux encore définitif.</p>
 
-                <p class="no-margin">{{event.host}}</p>
+                <p class="no-margin">Créé par {{event.host}}</p>
             </div>
         </div>
         <div ng-show="message" class="text-center">
             <h4>{{message}}</h4>
         </div>
-    </ion-content>
+    </md-content>
 </ion-view>

@@ -3,12 +3,19 @@ angular.module('wizem', [
     'loginCtrl',
     'appCtrl',
     'eventCtrl',
+    'eventViewCtrl',
     'profileCtrl',
+    'friendCtrl',
     'ngMaterial',
     'ngCordovaOauth',
     'restangular',
     'userService',
-    'ngMessages'
+    'mapService',
+    'ngMessages',
+    'ionic-datepicker',
+    'pascalprecht.translate',
+    'uiGmapgoogle-maps',
+    'guestBlockDirective'
 ])
 
     .run(function($ionicPlatform, UserService, $state) {
@@ -24,7 +31,12 @@ angular.module('wizem', [
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
             }
-            user = UserService.getFromLocalStorage();
+            //user = UserService.getFromLocalStorage();
+            user = {
+                id: 2,
+                username: "b",
+                email: "b@b.com"
+            };
             if (typeof(user) != "undefined") {
                 $state.go('app.home');
             }
@@ -35,7 +47,8 @@ angular.module('wizem', [
         facebookId: ''
     })
 
-    .config(function($stateProvider, $urlRouterProvider, $mdIconProvider, $ionicConfigProvider, RestangularProvider) {
+    .config(function($stateProvider, $urlRouterProvider, $mdIconProvider, $ionicConfigProvider,
+                     RestangularProvider, $translateProvider, uiGmapGoogleMapApiProvider) {
 
         $mdIconProvider.defaultIconSet('/img/icons/mdi.svg');
 
@@ -43,9 +56,29 @@ angular.module('wizem', [
         $ionicConfigProvider.backButton.previousTitleText(false);
         $ionicConfigProvider.backButton.text("");
 
-        RestangularProvider.setBaseUrl('http://localhost/ESTEI_M2/wizem_site/web/app_dev.php/api/');
+        //RestangularProvider.setBaseUrl('http://localhost:8888/wizem/web/app_dev.php/api/');
+        RestangularProvider.setBaseUrl('http://wizem.fr/api/');
         RestangularProvider.setDefaultHeaders({"Content-type":"application/json"});
         RestangularProvider.setRequestSuffix('.json');
+
+        uiGmapGoogleMapApiProvider.configure({
+            //    key: 'your api key',
+            v: '3.20',
+            libraries: 'weather,geometry,visualization'
+        });
+
+        //$translateProvider
+        //    .useStaticFilesLoader({
+        //        prefix: 'scripts/locales/',
+        //        suffix: '.json'
+        //    })
+        //    .registerAvailableLanguageKeys(['fr'], {
+        //        'fr' : 'fr', 'fr_FR': 'fr', 'fr_FR': 'fr'
+        //    })
+        //    .preferredLanguage('fr')
+        //    .fallbackLanguage('fr')
+        //    .determinePreferredLanguage()
+        //    .useSanitizeValueStrategy('escapeParameters');
 
         $stateProvider.state('login', {
             url: '/login',
@@ -113,6 +146,26 @@ angular.module('wizem', [
                     Home: {
                         templateUrl: 'templates/events/events.html',
                         controller: 'EventCtrl'
+                    }
+                }
+            })
+
+            .state('app.viewEvent', {
+                url: '/view-event/:eventId',
+                views: {
+                    Home: {
+                        templateUrl: 'templates/events/viewEvent.html',
+                        controller: 'EventViewCtrl'
+                    }
+                }
+            })
+
+            .state('app.friends', {
+                url: '/friends',
+                views: {
+                    Home: {
+                        templateUrl: 'templates/friends.html',
+                        controller: 'FriendCtrl'
                     }
                 }
             });

@@ -18,7 +18,7 @@ angular.module('loginCtrl', [])
                 $scope.isLoading = false;
                 $state.go('app.home');
             }, function errorCallback(error) {
-                console.log(error.data.message);
+                //console.log(error.data.message);
                 $mdDialog.show(
                     $mdDialog.alert()
                         .clickOutsideToClose(true)
@@ -46,14 +46,14 @@ angular.module('loginCtrl', [])
 
             var data = {"email": mail, "username": username, "password": password};
 
-            console.log(data);
+            //console.log(data);
 
             Users.post(data).then(function(user) {
                 $scope.isLoading = false;
                 UserService.saveToLocalStorage(user);
                 $state.go('app.home');
             }, function errorCallback(error) {
-                console.log(error);
+                //console.log(error);
                 $scope.isLoading = false;
             });
         };

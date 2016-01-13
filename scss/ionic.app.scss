@@ -15,7 +15,9 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
-$energized: #263238;
+//$energized: #263238;
+$energized: #046AA3;
+$balanced: #EBEEF0;
 $balanced: #AFB42B;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
@@ -48,6 +50,27 @@ ion-view.pane {
 }
 .loader {
   @include centerer;
+}
+md-progress-circular.md-default-theme, md-progress-circular .md-inner .md-gap {
+  border-top-color: #046AA3 !important;
+  border-bottom-color: #046AA3 !important;
+}
+md-progress-circular.md-default-theme, md-progress-circular .md-inner .md-left .md-half-circle {
+  border-left-color: #046AA3 !important;
+  border-top-color: #046AA3 !important;
+}
+md-progress-circular.md-default-theme, md-progress-circular .md-inner .md-right .md-half-circle {
+  border-right-color: #046AA3 !important;
+  border-top-color: #046AA3 !important;
+}
+md-progress-circular .md-spinner-wrapper .md-inner .md-right .md-half-circle {
+  border-bottom-color: #046AA3 !important;
+  border-left-color: #046AA3 !important;
+}
+
+/***** Shadows *****/
+.shadow-bottom {
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.26);
 }
 
 /***** Margin *****/
@@ -173,6 +196,68 @@ textarea, input[type="text"], input[type="password"], input[type="number"], inpu
   margin: 10px;
 }
 
+/***** Event view *****/
+.angular-google-map-container {
+  height: 200px;
+}
+.fab-green {
+  top: 180px !important;
+  background-color: #E0E00E !important;
+}
+.fab-red {
+  top: 180px !important;
+  background-color: #EE4F56 !important;
+}
+.fab-gray {
+  top: 180px !important;
+  background-color: #32c3ee !important;
+}
+.dates-link {
+  max-height: 24px;
+  margin-bottom: 10px;
+}
+.places-link {
+  max-height: 24px;
+  margin-bottom: 10px;
+}
+
+/***** Google Map *****/
+.gmnoprint, .gm-style-cc {
+  display: none;
+}
+.back-button-map {
+  border: 0px solid transparent !important;
+  border-radius: 50px !important;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.26) !important;
+  background-color: rgba(0,0,0,0.6) !important;
+  width: 30px !important;
+  padding-top: 1px !important;
+}
+button.back-button-map i {
+  margin-left: 2px !important;
+  margin-top: 5px !important;
+}
+button.back-button-map i::before {
+  font-size: 20px !important;
+  line-height: 30px !important;
+}
+
+/****************** TEST DES COULEURS SUR LA HOME ********************/
+.bouton {
+  background-color: #E0E00E !important;
+}
+.bouton-bleu {
+  background-color: #046AA3 !important;
+}
+.blanc {
+  color: white !important;
+}
+.vert {
+  color: #36464E;
+}
+.bleu {
+  color: #046AA3;
+}
 
 
 /* *****************************************************************************
@@ -188,8 +273,9 @@ textarea, input[type="text"], input[type="password"], input[type="number"], inpu
                                  Angular Material
 ***************************************************************************** */
 md-content {
-  background-color: #263238;
+  background-color: #EBEEF0;
   height: 100%;
+  color: #333333;
 }
 
 md-input-container {
@@ -207,3 +293,4 @@ md-input-container label {
 .md-button {
   margin: 0;
 }
+
