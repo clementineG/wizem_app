@@ -32,28 +32,6 @@
                     <input ng-model="user.address">
                 </md-input-container>
             </div>
-            <div layout-gt-sm="row">
-                <md-input-container class="xs-block" flex-gt-xs>
-                    <label>Code postal</label>
-                    <input name="postalCode" ng-model="user.postalCode" placeholder="12345"
-                            ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
-
-                    <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
-                        <!--<div ng-message="required" class="my-message">You must supply a postal code.</div>-->
-                        <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
-                            code.
-                        </div>
-                        <div ng-message="md-maxlength" class="my-message">
-                            Don't use the long version silly...we don't need to be that specific...
-                        </div>
-                    </div>
-                </md-input-container>
-                <md-input-container class="xs-block" flex-gt-sm>
-                    <label>Ville</label>
-                    <input ng-model="user.city">
-                </md-input-container>
-
-            </div>
             <md-input-container class="xs-block" flex-gt-xs>
                 <h4>Date de naissance</h4>
                 <ionic-datepicker input-obj="datepickerBirthday">
@@ -62,9 +40,9 @@
             </md-input-container>
 
 
-            <md-input-container>
-                <md-button class="md-raised md-primary" type="submit">Enregistrer</md-button>
-            </md-input-container>
+            <!--<md-input-container>-->
+                <!--<md-button class="md-raised md-primary" type="submit">Enregistrer</md-button>-->
+            <!--</md-input-container>-->
         </form>
 
 

@@ -1,15 +1,17 @@
 angular.module('userService', [])
 
-    .factory('UserService', ['$ionicHistory',
-        function ($ionicHistory) {
+    .factory('UserService', ['$ionicHistory', 'Restangular',
+        function ($ionicHistory,Restangular) {
 
             var user = window.localStorage['user'] ? angular.fromJson(window.localStorage['user']) : {};
-           var userExt = {'avatar' : 'http://unsplash.it/100/100'};
-            angular.extend(user,userExt);
+            var userRest;
+            Restangular.one("users", user.id).get().then(function(u){
+                userRest = u;
+            });
 
             return {
                 getUser: function () {
-                    return user;
+                    return userRest;
                 },
                 getFromLocalStorage: function () {
                     user = angular.fromJson(window.localStorage['user']);
@@ -25,7 +27,10 @@ angular.module('userService', [])
                     $ionicHistory.clearHistory();
                 },
                 setAvatar: function(img){
-                    user.avatar = img;
+                    user.image = img;
+                },
+                updateUser: function(usr){
+                    usr.put();
                 }
 
             }

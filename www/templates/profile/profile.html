@@ -3,9 +3,9 @@
         <div flex layout="column">
 
             <div class="section_cover" >
-                <img ng-src="{{user.avatar}}" />
+                <img ng-src="{{user.image}}" id="avatar"/>
                 <h2>{{user.username}}</h2>
-                {{user.firstname}}{{user.lastname}}
+                <h3>{{user.firstname}} {{user.lastname}}</h3>
             </div>
 
             <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>

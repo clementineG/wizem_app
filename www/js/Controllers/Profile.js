@@ -3,6 +3,7 @@ angular.module('profileCtrl', [])
     .controller('ProfileCtrl', ['$scope', 'UserService', 'Restangular', '$cordovaCamera', function ($scope, UserService, Restangular, $cordovaCamera) {
 
         $scope.user = UserService.getUser();
+
         var monthList = ["Jan", "Fev", "Mars", "Avril", "Mai", "Juin", "Juil", "Aout", "Sept", "Oct", "Nov", "Dec"];
         var weekDaysList = ["Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa"];
 
@@ -34,22 +35,9 @@ angular.module('profileCtrl', [])
 
         $scope.editProfile = function (userM) {
             //user
-            Restangular.one("users", $scope.user.id).get().then(function (us) {
-                console.log(us);
+            Restangular.one("users", userM.id).get().then(function (u) {
+                UserService.updateUser(u);
             });
-
-            //newMail = userM.email;
-            //var users = Restangular.all("users").getList().then(function (u) {
-            //    eUser = u[0];
-            //    eUser.email = newMail;
-            //    eUser.put();
-            //    eUser.save();
-            //    $scope.user = eUser;
-            //    console.log(eUser);
-            //
-            //});
-            //Restangular.one("accounts", 123).one("buildings", 456).one("spaces", 789).get()
-
         }
 
         $scope.takePhoto = function () {
