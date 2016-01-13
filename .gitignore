@@ -1,4 +1,4 @@
 # Fichiers idea
 .idea
-/plugins
-/platforms
+plugins/
+platforms/
