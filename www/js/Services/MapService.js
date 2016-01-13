@@ -60,6 +60,7 @@ angular.module('mapService', [])
             },
             getMarkers: function(tabMarkers) {
                 var markers = [];
+                var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
                 angular.forEach(tabMarkers, function(place, key) {
                     marker = {
                         id: key,
@@ -68,10 +69,11 @@ angular.module('mapService', [])
                             longitude: place.lng
                         },
                         options: {
-                            icon: "urlImage" + key + ".png"
+                            icon: "urlImage-" + key + ".png"
                         }
                     };
                     markers.push(marker);
+                    console.log(marker);
                 });
                 return markers;
             }

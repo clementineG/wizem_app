@@ -1,11 +1,33 @@
 <ion-view view-title="Votes de la date">
+
+    <ion-nav-bar class="bar-clear" ng-show="!isLoading">
+        <ion-nav-back-button class="back-button-map" style="margin-top:8px;margin-left:8px;"></ion-nav-back-button>
+
+        <ion-nav-buttons side="left">
+            <md-button class="md-icon-button md-primary" aria-label="Menu" menu-toggle="left">
+                <md-icon md-svg-icon="menu" style="color: white;"></md-icon>
+            </md-button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
     <md-content no-scroll-padding>
-        <!--<div ng-repeat="event in eventsList | orderBy : event.date : true" layout="row">-->
-            <!--<div ng-if="event.date" class="date text-center" flex="15">-->
-                <!--<p class="no-margin">{{event.date | date:'dd'}}</p>-->
-                <!--<p class="no-margin">{{event.date | date:'MMM'}}</p>-->
-            <!--</div>-->
-            <p>{{dates}}</p>
-        <!--</div>-->
+        <div ng-repeat="date in dates" layout="row" ng-show="!isLoading">
+            <div flex="15" class="text-center">
+                <h2 class="no-margin-bottom">{{date.nbVotes}}</h2>
+            </div>
+
+            <div class="item item-text-wrap card text-center" ng-click="vote({date:date.id})" flex="70">
+                <h2>{{place.address}}</h2>
+            </div>
+
+            <div flex="15" class="text-center">
+                <md-icon class="margin-top" ng-show="date.hasVoted" md-svg-icon="check" style="color: black;"></md-icon>
+            </div>
+        </div>
+
+        <div class="loader">
+            <md-progress-circular md-mode="indeterminate" ng-show="isLoading"></md-progress-circular>
+        </div>
+
     </md-content>
 </ion-view>

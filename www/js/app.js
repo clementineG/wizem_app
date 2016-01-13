@@ -5,6 +5,7 @@ angular.module('wizem', [
     'eventCtrl',
     'eventViewCtrl',
     'voteViewCtrl',
+    'allUsersEventCtrl',
     'profileCtrl',
     'friendCtrl',
     'ngMaterial',
@@ -177,6 +178,16 @@ angular.module('wizem', [
                     Home: {
                         templateUrl: 'templates/events/viewVotePlaces.html',
                         controller: 'VoteViewCtrl'
+                    }
+                }
+            })
+
+            .state('app.allUsers', {
+                url: '/view-event/:eventId/users',
+                views: {
+                    Home: {
+                        templateUrl: 'templates/events/allUsers.html',
+                        controller: 'AllUsersEventCtrl'
                     }
                 }
             })

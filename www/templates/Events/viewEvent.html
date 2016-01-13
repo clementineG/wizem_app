@@ -30,7 +30,7 @@
                 <md-icon md-svg-icon="calendar-clock" style="color: black;"></md-icon>
                 <span ng-if="event.date.final" flex class="margin-left">{{event.date.final | date:'dd MMMM yyyy - HH'}} h {{event.date.final | date:'mm'}}</span>
                 <span ng-if="!event.date.final" flex class="margin-left dates-link">
-                    <md-button class="md-primary" ng-href="" target="">La date n'est pas encore définie.</md-button>
+                    <md-button class="md-primary" ui-sref="app.viewVoteDates({eventId:idEvent})" target="">La date n'est pas encore définie</md-button>
                 </span>
             </div>
 
@@ -38,7 +38,7 @@
                 <md-icon md-svg-icon="map-marker" style="color: black;"></md-icon>
                 <span ng-if="event.place.final" flex class="margin-left">{{event.place.final.address}}</span>
                 <span ng-if="!event.place.final" flex class="margin-left places-link">
-                    <md-button class="md-primary" ui-sref="app.viewVotePlaces({eventId:idEvent})" target="">Le lieu n'est pas encore défini.</md-button>
+                    <md-button class="md-primary" ui-sref="app.viewVotePlaces({eventId:idEvent})" target="">Le lieu n'est pas encore défini</md-button>
                 </span>
             </div>
 
@@ -48,6 +48,12 @@
                 <div ng-repeat="user in event.users" flex="35">
                     <guest-Block user="user"></guest-Block>
                 </div>
+            </div>
+
+            <div layout="row">
+                <md-input-container flex>
+                    <md-button class="md-raised bouton-bleu blanc" ui-sref="app.allUsers({eventId:idEvent})">Voir tous les invités</md-button>
+                </md-input-container>
             </div>
         </div>
     </md-content>

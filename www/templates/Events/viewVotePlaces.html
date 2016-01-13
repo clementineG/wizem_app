@@ -1,6 +1,6 @@
 <ion-view view-title="Votes du lieu">
 
-    <ion-nav-bar class="bar-clear">
+    <ion-nav-bar class="bar-clear" ng-show="!isLoading">
         <ion-nav-back-button class="back-button-map" style="margin-top:8px;margin-left:8px;"></ion-nav-back-button>
 
         <ion-nav-buttons side="left">
@@ -11,24 +11,28 @@
     </ion-nav-bar>
 
     <md-content no-scroll-padding>
-        <div flex class="shadow-bottom">
+        <div flex class="shadow-bottom" ng-show="!isLoading">
             <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options' styles="map.styles">
                 <ui-gmap-marker ng-repeat="m in markers" coords="m.coords" icon="m.icon" idkey="m.id"></ui-gmap-marker>
             </ui-gmap-google-map>
         </div>
 
-        <div ng-repeat="place in places" layout="row">
+        <div ng-repeat="place in places" layout="row" ng-show="!isLoading">
             <div flex="15" class="text-center">
                 <h2 class="no-margin-bottom">{{place.nbVotes}}</h2>
             </div>
 
-            <div class="item item-text-wrap card text-center" ng-click="vote(place.id)" flex="70">
+            <div class="item item-text-wrap card text-center" ng-click="vote({place:place.id})" flex="70">
                 <h2>{{place.address}}</h2>
             </div>
 
             <div flex="15" class="text-center">
                 <md-icon class="margin-top" ng-show="place.hasVoted" md-svg-icon="check" style="color: black;"></md-icon>
             </div>
+        </div>
+
+        <div class="loader">
+            <md-progress-circular md-mode="indeterminate" ng-show="isLoading"></md-progress-circular>
         </div>
 
     </md-content>

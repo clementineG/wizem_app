@@ -64,7 +64,7 @@ angular.module('eventViewCtrl', [])
                 fab.classList.remove("fab-gray");
                 fab.classList.remove("fab-red");
                 fab.classList.add("fab-green");
-                z
+                $rootScope.$emit("userEventStateChange", user, $scope.accept);
             }, function() {
                 $scope.accept = false;
                 $scope.fabicon = "window-close";
