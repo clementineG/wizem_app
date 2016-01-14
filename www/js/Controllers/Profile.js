@@ -1,8 +1,9 @@
 angular.module('profileCtrl', [])
 
-    .controller('ProfileCtrl', ['$scope', 'UserService', 'Restangular', function ($scope, UserService, Restangular) {
+    .controller('ProfileCtrl', ['$scope', 'UserService', 'Restangular', '$cordovaCamera', function ($scope, UserService, Restangular, $cordovaCamera) {
 
-        $scope.user = UserService.getFromLocalStorage();
+        $scope.user = UserService.getUser();
+
         var monthList = ["Jan", "Fev", "Mars", "Avril", "Mai", "Juin", "Juil", "Aout", "Sept", "Oct", "Nov", "Dec"];
         var weekDaysList = ["Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa"];
 
@@ -22,33 +23,43 @@ angular.module('profileCtrl', [])
             modalHeaderColor: 'bar-positive', //Optional
             modalFooterColor: 'bar-positive', //Optional
             dateFormat: 'dd-MM-yyyy', //Optional
-            closeOnSelect: 'true', //Optional
+            closeOnSelect: true, //Optional
             callback: function (val) {  //Mandatory
                 datePickerBirthdayCallback(val);
             },
         };
 
-        function datePickerBirthdayCallback(v){
-            $scope.datepickerBirthday.inputDate=v;
+        function datePickerBirthdayCallback(v) {
+            $scope.datepickerBirthday.inputDate = v;
         }
 
         $scope.editProfile = function (userM) {
             //user
-            Restangular.one("users",$scope.user.id).get().then(function(us){
-                console.log(us);
+            Restangular.one("users", userM.id).get().then(function (u) {
+                UserService.updateUser(u);
             });
-
-            //newMail = userM.email;
-            //var users = Restangular.all("users").getList().then(function (u) {
-            //    eUser = u[0];
-            //    eUser.email = newMail;
-            //    eUser.put();
-            //    eUser.save();
-            //    $scope.user = eUser;
-            //    console.log(eUser);
-            //
-            //});
-            //Restangular.one("accounts", 123).one("buildings", 456).one("spaces", 789).get()
-
         }
+
+        $scope.takePhoto = function () {
+            var options = {
+                quality: 50,
+                destinationType: Camera.DestinationType.DATA_URL,
+                sourceType: Camera.PictureSourceType.CAMERA,
+                cameraDirection: 1,
+                allowEdit: true,
+                encodingType: Camera.EncodingType.JPEG,
+                targetWidth: 100,
+                targetHeight: 100,
+                popoverOptions: CameraPopoverOptions,
+                saveToPhotoAlbum: false,
+                correctOrientation: true
+            };
+
+            $cordovaCamera.getPicture(options).then(function (imageData) {
+                userService.setAvatar("data:image/jpeg;base64," + imageData);
+            }, function (err) {
+                // error
+            });
+        }
+
     }]);

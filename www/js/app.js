@@ -9,6 +9,7 @@ angular.module('wizem', [
     'profileCtrl',
     'friendCtrl',
     'ngMaterial',
+    'ngCordova',
     'ngCordovaOauth',
     'restangular',
     'userService',
@@ -58,9 +59,15 @@ angular.module('wizem', [
         $ionicConfigProvider.navBar.alignTitle('center');
         $ionicConfigProvider.backButton.previousTitleText(false);
         $ionicConfigProvider.backButton.text("");
+        //API local
+        //RestangularProvider.setBaseUrl('http://localhost/ESTEI_M2/wizem_site/web/app_dev.php/api/');
+
+        //API wizem.fr
+        RestangularProvider.setBaseUrl('http://wizem.fr/api/');
 
         RestangularProvider.setBaseUrl('http://localhost:8888/wizem/web/app_dev.php/api/');
         //RestangularProvider.setBaseUrl('http://wizem.fr/api/');
+
         RestangularProvider.setDefaultHeaders({"Content-type":"application/json"});
         RestangularProvider.setRequestSuffix('.json');
 
