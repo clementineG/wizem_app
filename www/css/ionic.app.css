@@ -9287,6 +9287,14 @@ button.back-button-map i::before {
   font-size: 20px !important;
   line-height: 30px !important; }
 
+/***** Profile *****/
+.section_cover {
+  text-align: center; }
+  .section_cover img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px; }
+
 /****************** TEST DES COULEURS SUR LA HOME ********************/
 .bouton {
   background-color: #E0E00E !important; }
