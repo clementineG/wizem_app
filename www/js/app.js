@@ -35,12 +35,7 @@ angular.module('wizem', [
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
             }
-            //user = UserService.getFromLocalStorage();
-            user = {
-                id: 2,
-                username: "b",
-                email: "b@b.com"
-            };
+            var user = UserService.getFromLocalStorage();
             if (typeof(user) != "undefined") {
                 $state.go('app.home');
             }

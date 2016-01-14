@@ -63,9 +63,9 @@ angular.module('profileCtrl', [])
                 saveToPhotoAlbum: false,
                 correctOrientation: true
             };
-
             $cordovaCamera.getPicture(options).then(function (imageData) {
-                userService.setAvatar("data:image/jpeg;base64," + imageData);
+                UserService.setAvatar("data:image/jpeg;base64," + imageData);
+
             }, function (err) {
                 // error
             });

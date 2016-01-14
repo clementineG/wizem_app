@@ -4,5 +4,5 @@ angular.module('appCtrl', [])
         function($scope, $stateParams, UserService, Restangular, $state) {
 
         $scope.user = UserService.getUser();
-        console.log($scope.user);
+        //console.log($scope.user);
     }]);
