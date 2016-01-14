@@ -13,6 +13,7 @@ angular.module('friendCtrl', [])
         // On supprimer l'ami sélectionné
         $scope.delete = function(id) {
             $scope.isLoading = true;
+
             FriendService.delete(userId, id);
 
             $scope.isLoading = false;
