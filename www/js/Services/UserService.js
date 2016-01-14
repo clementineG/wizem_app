@@ -5,11 +5,16 @@ angular.module('userService', [])
 
             var user = window.localStorage['user'] ? angular.fromJson(window.localStorage['user']) : {};
             var userRest;
-            Restangular.one("users", user.id).get().then(function(u){
-                userRest = u;
+            Restangular.one("users", user.id).get().then(function(user){
+                userRest = user;
+            }, function errorCallback(error) {
+                console.log(error);
             });
 
+            console.log(userRest);
+
             return {
+
                 getUser: function () {
                     return userRest;
                 },

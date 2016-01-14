@@ -1,6 +1,7 @@
 angular.module('profileCtrl', [])
 
-    .controller('ProfileCtrl', ['$scope', 'UserService', 'Restangular', '$cordovaCamera', function ($scope, UserService, Restangular, $cordovaCamera) {
+    .controller('ProfileCtrl', ['$scope', 'UserService', 'Restangular', '$cordovaCamera', '$mdDialog', '$state',
+        function ($scope, UserService, Restangular, $cordovaCamera, $mdDialog, $state) {
 
         $scope.user = UserService.getUser();
 
@@ -26,7 +27,7 @@ angular.module('profileCtrl', [])
             closeOnSelect: true, //Optional
             callback: function (val) {  //Mandatory
                 datePickerBirthdayCallback(val);
-            },
+            }
         };
 
         function datePickerBirthdayCallback(v) {
@@ -34,11 +35,19 @@ angular.module('profileCtrl', [])
         }
 
         $scope.editProfile = function (userM) {
-            //user
             Restangular.one("users", userM.id).get().then(function (u) {
                 UserService.updateUser(u);
+
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .clickOutsideToClose(true)
+                        .title("Modification enregistrée")
+                        .ok("Fermer")
+                )
+
+                $state.go('app.profile');
             });
-        }
+        };
 
         $scope.takePhoto = function () {
             var options = {
