@@ -1,0 +1,14 @@
+<ion-view view-title="Mes amis">
+    <md-content>
+        <div layout="column" class="padding-top">
+            <div ng-repeat="friend in friends" layout="row">
+                <div flex="70">
+                    <guest-Block user="friend"></guest-Block>
+                </div>
+                <div flex="30">
+                    <md-button class="md-raised bouton-bleu blanc" ng-click="delete(friend.id)">Supprimer</md-button>
+                </div>
+            </div>
+        </div>
+    </md-content>
+</ion-view>

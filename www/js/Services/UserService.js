@@ -7,6 +7,10 @@ angular.module('userService', [])
 
         return {
 
+            getId: function() {
+                user = angular.fromJson(window.localStorage['user']);
+                return user.id;
+            },
             getFromLocalStorage: function() {
                 user = angular.fromJson(window.localStorage['user']);
                 return user;

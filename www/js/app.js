@@ -13,6 +13,7 @@ angular.module('wizem', [
     'restangular',
     'userService',
     'mapService',
+    'friendService',
     'ngMessages',
     'ionic-datepicker',
     'pascalprecht.translate',
@@ -196,7 +197,7 @@ angular.module('wizem', [
                 url: '/friends',
                 views: {
                     Home: {
-                        templateUrl: 'templates/friends.html',
+                        templateUrl: 'templates/friends/friends.html',
                         controller: 'FriendCtrl'
                     }
                 }
