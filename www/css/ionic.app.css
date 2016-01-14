@@ -9223,14 +9223,6 @@ textarea, input[type="text"], input[type="password"], input[type="number"], inpu
 .card {
   margin: 10px; }
 
-/***** Profile *****/
-.section_cover {
-  text-align: center; }
-  .section_cover img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50px; }
-
 /* *****************************************************************************
                                  Platform Android
 ***************************************************************************** */
@@ -9241,6 +9233,7 @@ textarea, input[type="text"], input[type="password"], input[type="number"], inpu
                                  Angular Material
 ***************************************************************************** */
 md-content {
+  background-color: #263238;
   height: 100%; }
 
 md-input-container {
