@@ -4,7 +4,7 @@ angular.module('eventCtrl', [])
         function($scope, $stateParams, UserService, Restangular, $state) {
 
         // On récupère le User et son id
-        $scope.user = UserService.getFromLocalStorage();
+        var user = UserService.getFromLocalStorage();
         var id = user.id;
 
         var Events = Restangular.all('users/' + id + '/events');
