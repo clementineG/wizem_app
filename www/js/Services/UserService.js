@@ -5,20 +5,21 @@ angular.module('userService', [])
 
             var user = window.localStorage['user'] ? angular.fromJson(window.localStorage['user']) : {};
             var userRest;
-            Restangular.one("users", user.id).get().then(function(user){
+            var UsersLoginsFb = Restangular.all('users/facebooks');
+            Restangular.one("users", user.id).get().then(function (user) {
                 userRest = user;
             }, function errorCallback(error) {
                 console.log(error);
             });
 
-            console.log(userRest);
+            //console.log(userRest);
 
             return {
 
                 getUser: function () {
                     return userRest;
                 },
-                getId: function() {
+                getId: function () {
                     user = angular.fromJson(window.localStorage['user']);
                     return user.id;
                 },
@@ -35,10 +36,10 @@ angular.module('userService', [])
                     $ionicHistory.clearCache();
                     $ionicHistory.clearHistory();
                 },
-                setAvatar: function(img){
+                setAvatar: function (img) {
                     user.image = img;
                 },
-                updateUser: function(usr){
+                updateUser: function (usr) {
                     usr.put();
                 },
                 getState: function (users, userId) {
@@ -60,6 +61,40 @@ angular.module('userService', [])
                         }
                     });
                     return defer.promise;
+                },
+                apiWithPromise: function (requestPath, permissions) {
+                    var task = $q.defer();
+                    facebookConnectPlugin.api(requestPath, permissions,
+                        function (data) {
+                            task.resolve(data);
+                        }, function (error) {
+                            task.reject(error);
+                        });
+                    return task.promise;
+                },
+                hasWizemAccount: function (userFbEmail) {
+                    var defer = $q.defer();
+
+                    UsersLoginsFb.post(userFbEmail).then(function (result) {
+                        var exists = result;
+                        return defer.resolve(exists);
+                    }, function errorCallback(error) {
+                        defer.reject(error);
+                    });
+                    return defer.promise;
+                },
+                updateWizemAccount: function (params) {
+                    console.log('apiupdate');
+                    var defer = $q.defer();
+                    UsersLoginsFb.post(params).then(function (userFinal) {
+                        console.log(userFinal);
+                        return defer.resolve(userFinal);
+                    }, function errorCallback(error) {
+                        console.log(error);
+                        defer.reject(error);
+                    });
+                    return defer.promise;
                 }
             }
-        }]);
+        }
+    ]);
