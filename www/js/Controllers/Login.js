@@ -57,8 +57,10 @@ angular.module('loginCtrl', [])
                                             'update': true,
                                             'email': userAPI.email,
                                             'userId': userAPI.id,
-                                            'facebookId': userFb.id
+                                            'facebookId': userFb.id,
+                                            'username':  $scope.username
                                         };
+
 
                                     }
                                     if (typeof userId == 'undefined' && userFacebookId == false) {
@@ -77,9 +79,20 @@ angular.module('loginCtrl', [])
                                     }
 
                                     if (params !== []) {
-                                        UserService.updateWizemAccount(params).then(function(userFinal) {
+                                        if(params.update == true){
+                                            $state.go('app.register');
+                                            param.username = $scope.username;
+                                        }
+                                        UserService.updateWizemAccount(params).then(function (userFinal) {
                                             UserService.saveToLocalStorage(userFinal);
-                                            $state.go('app.home');
+                                            if (typeof userFinal != 'undefined')
+                                                $state.go('app.home');
+                                            $mdToast.show(
+                                                $mdToast.simple()
+                                                    .content('Salut ' + userFinal.username)
+                                                    .position("bottom")
+                                                    .hideDelay(3000)
+                                            );
                                         }, function errorCallback(error) {
                                             console.log(error);
                                         });
@@ -112,6 +125,10 @@ angular.module('loginCtrl', [])
 
             };
 
+            $scope.chooseUsername = function(){
+                console.log('chooseUsername');
+                $scope.go('app.register');
+            }
 
             // Choose Username to complete fb profile
             $scope.saveUsername = function () {
@@ -158,10 +175,6 @@ angular.module('loginCtrl', [])
 
                 var data = {"email": mail, "username": username, "password": password};
 
-                //
-
-
-
                 Users.post(data).then(function (user) {
                     $scope.isLoading = false;
                     UserService.saveToLocalStorage(user);
@@ -178,10 +191,3 @@ angular.module('loginCtrl', [])
                 $state.go('login');
             }
         }]);
-//$cordovaOauth.facebook(SocialProvider.facebookId, ['email']).then(
-//    function(result) {
-//        console.log("Response Object -> " + JSON.stringify(result));
-//    }, function(error) {
-//        console.log("Error -> " + error);
-//    }
-//);
