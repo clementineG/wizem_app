@@ -22,8 +22,8 @@ angular.module('wizem', [
     'guestBlockDirective'
 ])
 
-    .run(function($ionicPlatform, UserService, $state) {
-        $ionicPlatform.ready(function() {
+    .run(function ($ionicPlatform, UserService, $state) {
+        $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -46,8 +46,8 @@ angular.module('wizem', [
         facebookId: ''
     })
 
-    .config(function($stateProvider, $urlRouterProvider, $mdIconProvider, $ionicConfigProvider,
-                     RestangularProvider, $translateProvider, uiGmapGoogleMapApiProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $mdIconProvider, $ionicConfigProvider,
+                      RestangularProvider, $translateProvider, uiGmapGoogleMapApiProvider) {
 
         $mdIconProvider.defaultIconSet('/img/icons/mdi.svg');
 
@@ -56,10 +56,10 @@ angular.module('wizem', [
         $ionicConfigProvider.backButton.text("");
 
         //API local
-        //RestangularProvider.setBaseUrl('http://localhost:8888/wizem/web/app_dev.php/api/');
+        //RestangularProvider.setBaseUrl('http://localhost/ESTEI_M2/wizem_site/web/app_dev.php/api/');
         //API wizem.fr
         RestangularProvider.setBaseUrl('http://wizem.fr/api/');
-        RestangularProvider.setDefaultHeaders({"Content-type":"application/json"});
+        RestangularProvider.setDefaultHeaders({"Content-type": "application/json"});
         RestangularProvider.setRequestSuffix('.json');
 
         uiGmapGoogleMapApiProvider.configure({
@@ -110,7 +110,15 @@ angular.module('wizem', [
                     }
                 }
             })
-
+            .state('app.register', {
+                url: '/register',
+                views: {
+                    Home: {
+                        templateUrl: 'templates/register.html',
+                        controller: 'LoginCtrl'
+                    }
+                }
+            })
             .state('app.profile', {
                 url: '/profile',
                 views: {
@@ -120,7 +128,6 @@ angular.module('wizem', [
                     }
                 }
             })
-
             .state('app.editProfile', {
                 url: '/profile/edit',
                 views: {

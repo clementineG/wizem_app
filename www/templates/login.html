@@ -8,7 +8,7 @@
         <div class="form padding-top-medium" ng-show="!isLoading">
             <form ng-submit="connexion(username, password)">
                 <md-input-container>
-                    <label>Login</label>
+                    <label>Username</label>
                     <input id="username" type="text" minlenght="3" ng-model="username">
                 </md-input-container>
 
@@ -25,11 +25,14 @@
                     <md-button class="md-primary" ui-sref="subscribe">Inscription</md-button>
                 </div>
             </form>
+            <div class="text-center">
+                <md-button class="md-primary" ng-click="facebookSignIn()">Se connecter avec Facebook</md-button>
+            </div>
         </div>
 
         <div class="loader">
             <md-progress-circular md-mode="indeterminate" ng-show="isLoading"></md-progress-circular>
         </div>
-
+        {{statusFb.id}}
     </md-content>
 </ion-view>
