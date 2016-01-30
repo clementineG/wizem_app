@@ -1,5 +1,5 @@
 <ion-view view-title="Mes évènements">
-    <md-content no-scroll-padding>
+    <md-content no-scroll-padding class="padding-bottom-content">
         <div ng-show="!message" ng-repeat="event in eventsList | orderBy : event.date : true" layout="row">
             <div ng-if="event.date" class="date text-center" flex="15">
                 <p class="no-margin">{{event.date | date:'dd'}}</p>

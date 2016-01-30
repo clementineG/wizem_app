@@ -3,6 +3,10 @@ angular.module('appCtrl', [])
     .controller('AppCtrl', ['$scope', '$stateParams', 'UserService', 'Restangular', '$state',
         function($scope, $stateParams, UserService, Restangular, $state) {
 
-        $scope.user = UserService.getUser();
-        //console.log($scope.user);
+        // On récupère le user connecté
+        //UserService.getUser().then(function(user) {
+        //    console.log(user);
+        //});
+            console.log('cono');
+
     }]);

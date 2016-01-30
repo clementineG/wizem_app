@@ -6,6 +6,7 @@ angular.module('wizem', [
     'eventViewCtrl',
     'voteViewCtrl',
     'allUsersEventCtrl',
+    'galleryEventCtrl',
     'profileCtrl',
     'friendCtrl',
     'ngMaterial',
@@ -19,41 +20,62 @@ angular.module('wizem', [
     'ionic-datepicker',
     'pascalprecht.translate',
     'uiGmapgoogle-maps',
-    'guestBlockDirective'
+    'guestBlockDirective',
+    'ionic.ion.autoListDivider',
+    'jett.ionic.filter.bar',
+    'ion-gallery'
 ])
 
-    .run(function ($ionicPlatform, UserService, $state) {
-        $ionicPlatform.ready(function () {
+    .run(function($ionicPlatform, UserService, $state, $rootScope, $cordovaStatusbar) {
+        $ionicPlatform.ready(function() {
+
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
             if (window.cordova && window.cordova.plugins.Keyboard) {
-                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-                cordova.plugins.Keyboard.disableScroll(true);
+                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+                cordova.plugins.Keyboard.disableScroll(false);
+                cordova.plugins.Keyboard.hideFormAccessoryBar(true);
 
             }
-            if (window.StatusBar) {
+
+            $cordovaStatusbar.styleHex('#EBEEF0');
+
+            //if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
-                StatusBar.styleDefault();
-            }
-            var user = UserService.getFromLocalStorage();
-            if (typeof(user) != "undefined") {
-                $state.go('app.home');
-            }
+                //StatusBar.styleDefault();
+            //}
+
+            $rootScope.$on('$stateChangeError',
+                function(event, toState, toParams, fromState, fromParams, error) {
+                    if (error && error.error === "noUser") {
+                        $state.go('login');
+                    }
+                }
+            )
+
         });
     })
 
-    .constant('SocialProvider', {
-        facebookId: ''
-    })
+    .config(function($stateProvider, $urlRouterProvider, $mdIconProvider, $ionicConfigProvider, ionGalleryConfigProvider,
+                     RestangularProvider, $translateProvider, uiGmapGoogleMapApiProvider, $ionicFilterBarConfigProvider) {
 
-    .config(function ($stateProvider, $urlRouterProvider, $mdIconProvider, $ionicConfigProvider,
-                      RestangularProvider, $translateProvider, uiGmapGoogleMapApiProvider) {
-
+        /***** Icon's config *****/
         $mdIconProvider.defaultIconSet('/img/icons/mdi.svg');
 
+        /***** NavBar's config *****/
         $ionicConfigProvider.navBar.alignTitle('center');
         $ionicConfigProvider.backButton.previousTitleText(false);
         $ionicConfigProvider.backButton.text("");
+
+        /***** Google Map's config *****/
+        uiGmapGoogleMapApiProvider.configure({
+            //    key: 'your api key',
+            v: '3.20',
+            libraries: 'weather,geometry,visualization'
+        });
+
+
+        /************* CONFIG DEE L'API À DÉPLACER DANS UN FICHIER *************/
 
         //API local
         //RestangularProvider.setBaseUrl('http://localhost/ESTEI_M2/wizem_site/web/app_dev.php/api/');
@@ -62,24 +84,25 @@ angular.module('wizem', [
         RestangularProvider.setDefaultHeaders({"Content-type": "application/json"});
         RestangularProvider.setRequestSuffix('.json');
 
-        uiGmapGoogleMapApiProvider.configure({
-            //    key: 'your api key',
-            v: '3.20',
-            libraries: 'weather,geometry,visualization'
+        /*************************************************************************/
+
+
+        /************* CONFIG DES PLUGINS À DÉPLACER DANS UN FICHIER *************/
+
+        /***** Fitler bar *****/
+        $ionicFilterBarConfigProvider.placeholder("Rechercher");
+
+        /***** Gallery photos *****/
+        ionGalleryConfigProvider.setGalleryConfig({
+            action_label: 'Fermer',
+            toggle: true,
+            row_size: 3
         });
 
-        //$translateProvider
-        //    .useStaticFilesLoader({
-        //        prefix: 'scripts/locales/',
-        //        suffix: '.json'
-        //    })
-        //    .registerAvailableLanguageKeys(['fr'], {
-        //        'fr' : 'fr', 'fr_FR': 'fr', 'fr_FR': 'fr'
-        //    })
-        //    .preferredLanguage('fr')
-        //    .fallbackLanguage('fr')
-        //    .determinePreferredLanguage()
-        //    .useSanitizeValueStrategy('escapeParameters');
+        /*************************************************************************/
+
+
+        /************* ROOTING À DÉPLACER DANS UN FICHIER *************/
 
         $stateProvider.state('login', {
             url: '/login',
@@ -98,7 +121,13 @@ angular.module('wizem', [
                 url: '',
                 abstract: true,
                 templateUrl: 'templates/menu.html',
-                controller: 'LoginCtrl'
+                controller: 'LoginCtrl',
+                    resolve: {
+                        user: function(UserService) {
+                            var value = UserService.init();
+                            return value;
+                        }
+                    }
             })
 
             .state('app.home', {
@@ -120,6 +149,7 @@ angular.module('wizem', [
                 }
             })
             .state('app.profile', {
+                cache: false,
                 url: '/profile',
                 views: {
                     Home: {
@@ -198,6 +228,16 @@ angular.module('wizem', [
                 }
             })
 
+            .state('app.gallery', {
+                url: '/view-event/:eventId/gallery',
+                views: {
+                    Home: {
+                        templateUrl: 'templates/events/gallery.html',
+                        controller: 'GalleryEventCtrl'
+                    }
+                }
+            })
+
             .state('app.friends', {
                 url: '/friends',
                 views: {
@@ -209,5 +249,7 @@ angular.module('wizem', [
             });
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('login');
+        $urlRouterProvider.otherwise('home');
+
+        /*************************************************************************/
     });

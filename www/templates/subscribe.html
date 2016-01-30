@@ -2,7 +2,8 @@
     <md-content layout-padding>
 
         <md-button class="md-icon-button md-primary" aria-label="Retour" ui-sref="login" ng-show="!isLoading">
-            <md-icon md-svg-icon="arrow-left" style="color: white;"></md-icon>
+            <!--<md-icon md-svg-icon="arrow-left" style="color: white;"></md-icon>-->
+            <a class="button button-icon icon ion-chevron-left button-calm margin-top-icon"></a>
         </md-button>
 
         <form ng-submit="subscribe(mail, username, password)" name="subscribeForm" ng-show="!isLoading">

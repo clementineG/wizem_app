@@ -1,7 +1,9 @@
 angular.module('voteViewCtrl', [])
 
-    .controller('VoteViewCtrl', ['$scope', 'MapService', '$stateParams', 'UserService', 'Restangular', '$state', 'uiGmapGoogleMapApi', '$mdDialog', '$rootScope',
-        function($scope, MapService, $stateParams, UserService, Restangular, $state, uiGmapGoogleMapApi, $mdDialog, $rootScope) {
+    .controller('VoteViewCtrl', ['$scope', 'MapService', '$stateParams', 'UserService', 'Restangular', '$state',
+        'uiGmapGoogleMapApi', '$mdDialog', '$rootScope', '$mdToast',
+        function($scope, MapService, $stateParams, UserService, Restangular, $state,
+                 uiGmapGoogleMapApi, $mdDialog, $rootScope, $mdToast) {
 
         // On récupère le User et son id
         var user = UserService.getFromLocalStorage();
@@ -9,6 +11,10 @@ angular.module('voteViewCtrl', [])
 
         // Id de l'event sélectionné
         var idEvent = $stateParams.eventId;
+
+        $scope.myGoBack = function() {
+            $state.go('app.viewEvent', {'eventId': idEvent});
+        };
 
         var getVoteDates = Restangular.all('users/' + userId + '/events/' + idEvent + '/votes/date');
         var getVotePlaces = Restangular.all('users/' + userId + '/events/' + idEvent + '/votes/place');
@@ -19,10 +25,6 @@ angular.module('voteViewCtrl', [])
         if (path == "app.viewVoteDates") {
 
         } else if (path == "app.viewVotePlaces") {
-            // On custom le bouton back pour qu'on le voit sur la Map
-            var backButton = document.getElementsByClassName("back-button")[0];
-            backButton.classList.add("back-button-map");
-
             //On récupère tous les lieux
             getVotePlaces.getList().then(function(places) {
                 $scope.places = places;
@@ -51,9 +53,22 @@ angular.module('voteViewCtrl', [])
             }
 
             postVote.post(data).then(function(vote) {
-                console.log(vote.id);
-                $scope.isLoading = false;
-                $state.go('app.viewEvent', {"eventId":idEvent});
+                getVotePlaces.getList().then(function(places) {
+                    $scope.places = places;
+
+                    $scope.isLoading = false;
+
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .content('Votre vote a bien été pris en compte.')
+                            .position("bottom")
+                            .hideDelay(3000)
+                    );
+                }, function errorCallback(error) {
+                    console.log(error);
+                });
+
+                //$state.go('app.viewEvent', {"eventId":idEvent});
             }, function errorCallback(error) {
                 console.log(error.data.message);
                 $mdDialog.show(

@@ -1,3 +1,5 @@
-<md-icon md-svg-icon="{{userIcon}}" style="color: black;"></md-icon>
+<img ng-show="user.image" ng-src="{{ user.image }}" class="avatar" ng-class="{ 'border-confirm': borderConfirm, 'border-wainting': borderWaiting, 'border-decline': borderDecline }" />
+<img ng-show="!user.image"  src="img/category/apero.jpg" class="avatar" ng-class="{ 'border-confirm': borderConfirm, 'border-wainting': borderWaiting, 'border-decline': borderDecline }" />
+<!--<a class="button button-icon icon {{userIcon}} margin-top-icon"></a>-->
 <p ng-if="user.lastname && user.firstname">{{user.firstname}} {{user.lastname}}</p>
 <p ng-if="!user.lastname || !user.firstname">{{user.username}}</p>

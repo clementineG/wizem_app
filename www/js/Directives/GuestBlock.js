@@ -21,13 +21,13 @@ angular.module('guestBlockDirective', [])
         function changeIcon($scope, state) {
             switch (state) {
                 case true:
-                    $scope.userIcon = "check";
+                    $scope.userIcon = "ion-checkmark-round";
                     break;
                 case false:
-                    $scope.userIcon = "window-close";
+                    $scope.userIcon = "ion-close-round";
                     break;
                 case null:
-                    $scope.userIcon = "help";
+                    $scope.userIcon = "ion-help";
                     break;
             }
         }

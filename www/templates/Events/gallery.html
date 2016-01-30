@@ -1,0 +1,30 @@
+<ion-view view-title="Gallerie">
+
+    <ion-nav-bar class="bar-energized ion-nav-bar shadow-bottom">
+        <ion-nav-back-button ng-click="myGoBack()"></ion-nav-back-button>
+    </ion-nav-bar>
+
+    <md-content class="padding-bottom-content">
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" pager-click="slide(index)">
+            <ion-slide>
+                <div class="box">
+                    <ion-gallery ion-gallery-items="pictures"></ion-gallery>
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div class="box">
+                    <div class="gallery-column" ng-repeat="picture in pictures">
+                        <div class="container">
+                            <img src="{{picture.src}}" alt="{{picture.sub}}">
+                        </div>
+                        <div class="container-bottom">
+                            <img src="{{picture.src}}" alt="avatar" class="gallery-avatar">
+                            <h4>{{picture.sub}}</h4>
+                            <p>Bla blab lab al</p>
+                        </div>
+                    </div>
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+    </md-content>
+</ion-view>

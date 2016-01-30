@@ -31,7 +31,9 @@
         "APP_ID": "1643312265936149",
         "APP_NAME": "Wizem"
       }
-    }
+    },
+    "onesignal-cordova-plugin",
+    "cordova-plugin-statusbar"
   ],
   "cordovaPlatforms": [
     "ios",

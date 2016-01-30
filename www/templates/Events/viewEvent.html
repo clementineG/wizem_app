@@ -5,7 +5,7 @@
 
         <ion-nav-buttons side="left">
             <md-button class="md-icon-button md-primary" aria-label="Menu" menu-toggle="left">
-                <md-icon md-svg-icon="menu" style="color: white;"></md-icon>
+                <a class="button button-icon icon ion-navicon-round margin-top-icon"></a>
             </md-button>
         </ion-nav-buttons>
     </ion-nav-bar>
@@ -18,26 +18,28 @@
         </div>
 
         <div>
-            <md-button class="md-fab md-fab-top-right md-mini md-primary" aria-label="Eat cake" ng-click="changeState()">
-                <md-icon md-svg-icon="{{fabicon}}" style="color: white;"></md-icon>
+            <md-button class="md-fab md-fab-top-right md-mini md-primary confirm-fab" aria-label="Change state" ng-click="changeState()">
+                <a class="button button-icon icon {{fabicon}} button-calm no-padding no-border size-medium"></a>
             </md-button>
         </div>
 
-        <div class="layout-padding">
+        <div layout-padding>
             <h2>{{event.typeEvent}}</h2>
 
             <div layout="row">
-                <md-icon md-svg-icon="calendar-clock" style="color: black;"></md-icon>
-                <span ng-if="event.date.final" flex class="margin-left">{{event.date.final | date:'dd MMMM yyyy - HH'}} h {{event.date.final | date:'mm'}}</span>
-                <span ng-if="!event.date.final" flex class="margin-left dates-link">
+                <a class="button button-icon icon ion-calendar no-padding size-medium"></a>
+                <span ng-if="event.date.final" flex class="margin-left" style="padding-top:13px;">{{event.date.final.date | date:'dd MMMM yyyy - HH'}} h {{event.date.final.date | date:'mm'}}</span>
+                <span ng-if="!event.date.final" flex class="margin-left dates-link" style="padding-top:13px;">
                     <md-button class="md-primary" ui-sref="app.viewVoteDates({eventId:idEvent})" target="">La date n'est pas encore définie</md-button>
                 </span>
             </div>
 
             <div layout="row">
-                <md-icon md-svg-icon="map-marker" style="color: black;"></md-icon>
-                <span ng-if="event.place.final" flex class="margin-left">{{event.place.final.address}}</span>
-                <span ng-if="!event.place.final" flex class="margin-left places-link">
+                <div class="padding-left-min">
+                    <a class="button button-icon icon ion-location no-padding size-medium"></a>
+                </div>
+                <span ng-if="event.place.final" flex class="margin-left padding-top-min">{{event.place.final.address}}</span>
+                <span ng-if="!event.place.final" flex class="margin-left places-link padding-top-min">
                     <md-button class="md-primary" ui-sref="app.viewVotePlaces({eventId:idEvent})" target="">Le lieu n'est pas encore défini</md-button>
                 </span>
             </div>
@@ -45,7 +47,7 @@
             <p>{{event.description}}</p>
 
             <div layout="row" class="text-center">
-                <div ng-repeat="user in event.users" flex="35">
+                <div ng-repeat="user in event.users" flex="33">
                     <guest-Block user="user"></guest-Block>
                 </div>
             </div>
@@ -53,6 +55,12 @@
             <div layout="row">
                 <md-input-container flex>
                     <md-button class="md-raised bouton-bleu blanc" ui-sref="app.allUsers({eventId:idEvent})">Voir tous les invités</md-button>
+                </md-input-container>
+            </div>
+
+            <div layout="row">
+                <md-input-container flex>
+                    <md-button class="md-raised bouton-bleu blanc" ui-sref="app.gallery({eventId:idEvent})">Voir les photos</md-button>
                 </md-input-container>
             </div>
         </div>
