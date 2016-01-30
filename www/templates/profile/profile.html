@@ -1,58 +1,42 @@
 <ion-view view-title="Profil">
-    <md-content class="md-padding" layout="row" layout-wrap layout-align="center start" layout-xs="column">
-        <div flex layout="column">
+    <md-content layout="column" class="padding-bottom-content">
+        <div class="cover_profile text-center" ng-style="cover_img" flex></div>
 
-            <div class="section_cover" >
-                <img ng-show="user.image !== undefined" ng-src="{{user.image}}" id="avatar"/>
-                <h2>{{user.username}}</h2>
-                <h3>{{user.firstname}} {{user.lastname}}</h3>
+        <div class="avatar_profile text-center">
+            <img ng-show="user.image"  ng-src="{{user.image}}" alt="avatar">
+            <img ng-show="!user.image"  src="img/category/apero.jpg" alt="avatar">
+            <p class="username_profile">{{user.username}}</p>
+            <p class="name_profile">{{user.firstname}} {{user.lastname}}</p>
+        </div>
+
+        <div class="fab_update_profile">
+            <md-button class="md-fab md-fab-top-right md-mini md-primary" aria-label="Update profile" ui-sref="app.editProfile">
+                <a class="button button-icon icon ion-edit button-calm no-padding no-border size-medium"></a>
+            </md-button>
+        </div>
+
+        <div class="stats_profile">
+            <div class="item item-text-wrap card padding no-padding-left" flex layout="row" layout-wrap>
+                <div class="num_stat_profile text-center" flex="20">{{user.nbFriends}}</div>
+                <div class="label_stat_profile" flex="65">Amis</div>
+                <div class="icon_stat_profile" flex="15">
+                    <i class="icon ion-person-stalker"></i>
+                </div>
             </div>
-
-            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                <md-button class="md-fab md-fab-top-right md-mini md-primary" ui-sref="app.editProfile" aria-label="editProfile">
-                    <md-icon md-svg-icon="pencil" style="color: white;"></md-icon>
-                </md-button>
-            </section>
-            <!-- Section statistique de l'utilisateur -->
-            <md-card>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">25{{nbFriends}}</span>
-                        <span class="md-subhead">Amis sur Wizem</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-sm card-media">
-                            <md-icon md-svg-icon="account-multiple" style="color: lightseagreen;"></md-icon>
-                        </div>
-                    </md-card-title-media>
-                </md-card-title>
-            </md-card>
-            <md-card>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">10{{nbAccepted}}</span>
-                        <span class="md-subhead">Events suivis</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-sm card-media">
-                            <md-icon md-svg-icon="calendar-multiple-check" style="color: lightseagreen;"></md-icon>
-                        </div>
-                    </md-card-title-media>
-                </md-card-title>
-            </md-card>
-            <md-card>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">3{{nbOwned}}</span>
-                        <span class="md-subhead">Events organisés</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <div class="md-media-sm card-media">
-                            <md-icon md-svg-icon="clipboard-text" style="color: lightseagreen;"></md-icon>
-                        </div>
-                    </md-card-title-media>
-                </md-card-title>
-            </md-card>
+            <div class="item item-text-wrap card padding no-padding-left" flex layout="row" layout-wrap>
+                <div class="num_stat_profile text-center" flex="20">{{user.parcicipatedEvent}}</div>
+                <div class="label_stat_profile" flex="65">Évènements suivis</div>
+                <div class="icon_stat_profile" flex="15">
+                    <i class="icon ion-paper-airplane" flex="10"></i>
+                </div>
+            </div>
+            <div class="item item-text-wrap card padding no-padding-left" flex layout="row" layout-wrap>
+                <div class="num_stat_profile text-center" flex="20">{{user.hostedEvent}}</div>
+                <div class="label_stat_profile" flex="65">Évènement organisés</div>
+                <div class="icon_stat_profile" flex="15">
+                    <i class="icon ion-briefcase"></i>
+                </div>
+            </div>
         </div>
     </md-content>
 </ion-view>

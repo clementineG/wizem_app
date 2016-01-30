@@ -1,14 +1,31 @@
 <ion-view view-title="Mes amis">
-    <md-content>
-        <div layout="column" class="padding-top">
-            <div ng-repeat="friend in friends" layout="row">
-                <div flex="70">
-                    <guest-Block user="friend"></guest-Block>
-                </div>
-                <div flex="30">
-                    <md-button class="md-raised bouton-bleu blanc" ng-click="delete(friend.id)">Supprimer</md-button>
-                </div>
+
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon icon ion-ios-search-strong" ng-click="showFilterBar()">
+        </button>
+    </ion-nav-buttons>
+
+    <md-content class="padding-bottom-content" layout-padding>
+            <md-list-item ng-show="!message" ng-repeat="friend in friends | orderBy: 'firstname'" class="item-icon-right">
+                <img ng-show="friend.image" ng-src="{{ friend.image }}" class="md-avatar" />
+                <img ng-show="!friend.image"  src="img/category/apero.jpg" class="md-avatar" />
+                <p ng-if="friend.lastname && friend.firstname">{{friend.firstname}} {{friend.lastname}}</p>
+                <p ng-if="!friend.lastname || !friend.firstname">{{friend.username}}</p>
+                <i class="icon ion-trash-a icon-blue" ng-click="delete(friend.id)"></i>
+            </md-list-item>
+
+            <!--<ion-list ng-show="!message" class="margin-bottom">-->
+                <!--<div auto-list-divider auto-list-divider-value="{{ friend.firstname }}" class="item item-icon-right" ng-repeat="friend in friends | orderBy:'firstname'">-->
+                    <!--<img ng-show="friend.image"  ng-src="{{ friend.image }}" class="friend-avatar" />-->
+                    <!--<img ng-show="!friend.image"  src="img/category/apero.jpg" class="friend-avatar" />-->
+                    <!--<h2 ng-if="friend.firstname" class="friend-name">{{friend.firstname}} {{friend.lastname}}</h2>-->
+                    <!--<h2 ng-if="!friend.firstname" class="friend-name">{{friend.username}}</h2>-->
+                    <!--<i class="icon ion-trash-a icon-blue" ng-click="delete(friend.id)"></i>-->
+                <!--</div>-->
+            <!--</ion-list>-->
+
+            <div ng-show="message" class="text-center">
+                <h4>{{message}}</h4>
             </div>
-        </div>
     </md-content>
 </ion-view>

@@ -1,0 +1,4 @@
+<img alt="Oups" ng-src="{{ friend.img }}" class="md-avatar" />
+<p ng-if="friend.lastname && friend.firstname">{{friend.firstname}} {{friend.lastname}}</p>
+<p ng-if="!friend.lastname || !friend.firstname">{{friend.username}}</p>
+<md-button class="md-raised bouton-bleu blanc" ng-click="delete(friend.id)">Supprimer</md-button>

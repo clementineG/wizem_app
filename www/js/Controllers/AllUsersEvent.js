@@ -1,7 +1,7 @@
 angular.module('allUsersEventCtrl', [])
 
-    .controller('AllUsersEventCtrl', ['$scope', '$stateParams', 'UserService', 'Restangular', '$state',
-        function($scope, $stateParams, UserService, Restangular, $state) {
+    .controller('AllUsersEventCtrl', ['$scope', '$stateParams', 'UserService', 'Restangular', '$state', '$ionicHistory',
+        function($scope, $stateParams, UserService, Restangular, $state, $ionicHistory) {
 
         // On récupère le User et son id
         var user = UserService.getFromLocalStorage();
@@ -9,6 +9,10 @@ angular.module('allUsersEventCtrl', [])
 
         // Id de l'event sélectionné
         $scope.idEvent = $stateParams.eventId;
+
+        $scope.myGoBack = function() {
+            $state.go('app.viewEvent', {'eventId': $scope.idEvent});
+        };
 
         var Users = Restangular.all('events/' + $scope.idEvent + '/users');
 

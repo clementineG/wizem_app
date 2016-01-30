@@ -1,49 +1,51 @@
 <ion-view view-title="Modifier mon profil">
-    <md-content layout-padding scroll="false">
-        <form name="userForm" ng-submit="editProfile(user)">
-            <md-button type="submit" class="md-fab md-fab-top-right md-mini md-primary " aria-label="submit form">
-                <md-icon md-svg-icon="check" style="color: white;"></md-icon>
-            </md-button>
-            <div layout-gt-sm="row">
-                <md-input-container class="md-block" flex-gt-sm>
-                    <label>Prénom</label>
-                    <input ng-model="user.firstname">
-                </md-input-container>
-                <md-input-container class="md-block" flex-gt-sm>
-                    <label>Nom</label>
-                    <input ng-model="user.lastname">
-                </md-input-container>
-            </div>
-            <div layout-gt-sm="row">
-                <md-input-container class="md-block">
-                    <label>Email</label>
-                    <input ng-model="user.email" required ng-pattern="/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/">
-                </md-input-container>
-            </div>
-            <div layout-gt-sm="row">
-                <md-input-container class="md-block">
-                    <label>Adresse</label>
-                    <input ng-model="user.address">
-                </md-input-container>
-            </div>
-            <md-input-container class="xs-block" flex-gt-xs>
-                <h4>Date de naissance</h4>
-                <ionic-datepicker input-obj="datepickerBirthday">
-                    <button class="button button-block button-positive">{{datepickerBirthday.inputDate | date:'dd - MM - yyyy'}}</button>
+    <md-content layout="column" class="padding-bottom-content">
+
+        <div class="avatar_profile_edit text-center" ng-show="!isLoading">
+            <img ng-show="user.image && !tempAvatar" ng-src="{{user.image}}" alt="avatar">
+            <img ng-show="tempAvatar" ng-src="{{tempAvatar}}" alt="avatar">
+            <img ng-show="!user.image && !tempAvatar" src="img/category/apero.jpg" alt="avatar">
+            <a href="" ng-click="takePhoto()" class="link_change_avatar">Cliquer pour modifier</a>
+        </div>
+
+        <form name="userForm" class="edit_user_form" ng-show="!isLoading">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Prénom</label>
+                <input ng-model="user.firstname">
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Nom</label>
+                <input ng-model="user.lastname">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>Email</label>
+                <input ng-model="user.email" required ng-pattern="/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>Adresse</label>
+                <input ng-model="user.place">
+            </md-input-container>
+
+            <md-input-container class="md-block input-birthdate">
+                <ionic-datepicker ng-if="datepickerBirthday.inputDate" input-obj="datepickerBirthday">
+                    <a ng-if="datepickerBirthday.inputDate" href="" class="md-input link-birthdate">{{datepickerBirthday.inputDate | date:datepickerBirthday.dateFormat}}</a>
+                    <a ng-if="!datepickerBirthday.inputDate" href="" class="md-input link-birthdate-empty">Votre date de naissance</a>
                 </ionic-datepicker>
             </md-input-container>
 
-
-            <!--<md-input-container>-->
-                <!--<md-button class="md-raised md-primary" type="submit">Enregistrer</md-button>-->
-            <!--</md-input-container>-->
+            <div class="fab_update_profile_edit">
+                <md-button ng-click="editProfile()" class="md-fab md-fab-top-right md-mini md-primary" aria-label="Submit Form">
+                    <a class="button button-icon icon ion-checkmark-round button-calm no-padding no-border size-medium"></a>
+                </md-button>
+            </div>
         </form>
 
-
-
-        <md-button ng-click="takePhoto()" class="md-primary md-hue-1">Photo</md-button>
-
-        <md-button class="md-primary md-hue-1">Changer mot de passe</md-button>
+        <div class="loader">
+            <md-progress-circular md-mode="indeterminate" ng-show="isLoading"></md-progress-circular>
+        </div>
 
     </md-content>
 </ion-view>

@@ -23,9 +23,12 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "com.ionic.keyboard",
-    "cordova-plugin-camera"
+    "cordova-plugin-camera",
+    "onesignal-cordova-plugin",
+    "cordova-plugin-statusbar"
   ],
   "cordovaPlatforms": [
+    "ios",
     {
       "platform": "ios",
       "version": "",

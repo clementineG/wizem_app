@@ -1,23 +1,42 @@
 angular.module('friendCtrl', [])
 
-    .controller('FriendCtrl', ['$scope', '$stateParams', 'UserService', 'FriendService', 'Restangular', '$state',
-        function($scope, $stateParams, UserService, FriendService, Restangular, $state) {
+    .controller('FriendCtrl', ['$scope', '$stateParams', 'UserService', 'FriendService', 'Restangular', '$state', '$ionicFilterBar',
+        function($scope, $stateParams, UserService, FriendService, Restangular, $state, $ionicFilterBar) {
 
         var userId = UserService.getId();
+        var filterBarInstance;
 
-        // On récupère tous les events
-        FriendService.getAll().then(function (friends) {
-            $scope.friends = friends;
+        // On récupère tous les amis
+        FriendService.getAll().then(function (result) {
+            (typeof result.message === "undefined") ? $scope.friends = result.friends : $scope.message = result.message;
         });
+
+        $scope.showFilterBar = function () {
+            filterBarInstance = $ionicFilterBar.show({
+                friends: $scope.friends,
+                update: function (filteredItems, filterText) {
+                    $scope.friends = filteredItems;
+                    if (filterText) {
+                        console.log(filterText);
+                    }
+                },
+                cancelText: "Annuler"
+            });
+        };
+
+        $scope.dividerFunction = function(key){
+            return key;
+        };
 
         // On supprimer l'ami sélectionné
         $scope.delete = function(id) {
-            $scope.isLoading = true;
-
             FriendService.delete(userId, id);
 
-            $scope.isLoading = false;
-            //$state.reload();
-            $state.go('app.friends');
+            // On le supprime du $scope pour mettre à jour la page en direct
+            var friend = _.findIndex($scope.friends, { id: id });
+            _.remove($scope.friends, function(item) {
+                return item.id == friend;
+            });
         }
+
     }]);

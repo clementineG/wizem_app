@@ -1,5 +1,10 @@
 <ion-view view-title="Liste des invités">
-    <md-content no-scroll-padding class="padding-top">
+
+    <ion-nav-bar class="bar-energized ion-nav-bar shadow-bottom">
+        <ion-nav-back-button ng-click="myGoBack()"></ion-nav-back-button>
+    </ion-nav-bar>
+
+    <md-content class="padding-top padding-bottom-content">
         <md-grid-list md-cols="3" md-gutter="1em" md-row-height="4:3">
             <md-grid-tile ng-repeat="user in users" class="text-center">
                 <guest-Block user="user"></guest-Block>
