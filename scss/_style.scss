@@ -51,6 +51,9 @@ md-progress-circular .md-spinner-wrapper .md-inner .md-right .md-half-circle {
 .icon-blue {
   color: #046AA3 !important;
 }
+.icon-amber {
+  color: #FFC107 !important;
+}
 
 
 /***** Shadows *****/
@@ -443,7 +446,7 @@ button.back-button-map i:before {
 }
 .fab_update_profile_edit .md-fab {
   top: 150px !important;
-  background-color: #E0E00E !important;
+  background-color: #FFC107 !important;
 }
 .avatar_profile img, .avatar_profile_edit img {
   width: 100px;
@@ -461,11 +464,11 @@ button.back-button-map i:before {
 }
 .fab_update_profile .md-fab {
   top: 180px !important;
-  background-color: #E0E00E !important;
+  background-color: #FFC107 !important;
 }
 .stats_profile .item {
   display: flex;
-  color: #046AA3;
+  color: #FFC107;
   cursor: default;
 }
 .stats_profile .num_stat_profile {
@@ -502,6 +505,16 @@ button.back-button-map i:before {
   text-decoration: none;
   padding-left: 10px !important;
 }
+.selected_date_full {
+  color: #046AA3 !important;
+}
+.left_arrow > button, .right_arrow > button {
+  color: #046AA3 !important;
+}
+.date_selected {
+  background-color: #FFC107 !important;
+  color: #EBEEF0 !important;
+}
 md-toast {
   background-color: #00E676 !important;
   //background-color: #00C853 !important;
@@ -513,7 +526,7 @@ md-toast span {
 
 /****************** TEST DES COULEURS SUR LA HOME ********************/
 .bouton {
-  background-color: #A55022 !important;
+  background-color: #FFC107 !important;
 }
 .bouton-bleu {
   background-color: #046AA3 !important;

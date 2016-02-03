@@ -24,6 +24,8 @@
     "cordova-plugin-splashscreen",
     "com.ionic.keyboard",
     "cordova-plugin-camera",
+    "onesignal-cordova-plugin",
+    "cordova-plugin-statusbar",
     {
       "id": "phonegap-facebook-plugin",
       "locator": "https://github.com/Wizcorp/phonegap-facebook-plugin.git",
@@ -31,9 +33,7 @@
         "APP_ID": "1643312265936149",
         "APP_NAME": "Wizem"
       }
-    },
-    "onesignal-cordova-plugin",
-    "cordova-plugin-statusbar"
+    }
   ],
   "cordovaPlatforms": [
     "ios",

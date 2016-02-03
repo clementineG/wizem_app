@@ -11,7 +11,7 @@
                 <img ng-show="!friend.image"  src="img/category/apero.jpg" class="md-avatar" />
                 <p ng-if="friend.lastname && friend.firstname">{{friend.firstname}} {{friend.lastname}}</p>
                 <p ng-if="!friend.lastname || !friend.firstname">{{friend.username}}</p>
-                <i class="icon ion-trash-a icon-blue" ng-click="delete(friend.id)"></i>
+                <i class="icon ion-trash-a icon-amber" ng-click="delete(friend.id)"></i>
             </md-list-item>
 
             <!--<ion-list ng-show="!message" class="margin-bottom">-->
