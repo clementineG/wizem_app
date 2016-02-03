@@ -6,11 +6,12 @@ angular.module('userService', [])
             var userRest;
 
             var UsersLoginsFb = Restangular.all('users/facebooks');
-            Restangular.one("users", user.id).get().then(function (user) {
-                userRest = user;
-            }, function errorCallback(error) {
-                console.log(error);
-            });
+
+            //Restangular.one("users", user.id).get().then(function (user) {
+            //    userRest = user;
+            //}, function errorCallback(error) {
+            //    console.log(error);
+            //});
 
             return {
 
