@@ -32,7 +32,6 @@ angular.module('loginCtrl', [])
 
             };
 
-
             // Connect with Facebook
             $scope.facebookSignIn = function () {
                 // Get Status de log
@@ -81,21 +80,30 @@ angular.module('loginCtrl', [])
                                     if (params !== []) {
                                         if(params.update == true){
                                             $state.go('app.register');
-                                            param.username = $scope.username;
+
+                                            $scope.$watchCollection('btnSubmitUsername', function(a) {
+                                                    if(a)
+                                                        params.username = $scope.username;
+
+                                            }
+                                           );
                                         }
-                                        UserService.updateWizemAccount(params).then(function (userFinal) {
-                                            UserService.saveToLocalStorage(userFinal);
-                                            if (typeof userFinal != 'undefined')
-                                                $state.go('app.home');
-                                            $mdToast.show(
-                                                $mdToast.simple()
-                                                    .content('Salut ' + userFinal.username)
-                                                    .position("bottom")
-                                                    .hideDelay(3000)
-                                            );
-                                        }, function errorCallback(error) {
-                                            console.log(error);
-                                        });
+                                        if(params.update != true || $scope.formUsernameSubmited==true){
+                                            UserService.updateWizemAccount(params).then(function (userFinal) {
+                                                UserService.saveToLocalStorage(userFinal);
+                                                if (typeof userFinal != 'undefined')
+                                                    $state.go('app.home');
+                                                $mdToast.show(
+                                                    $mdToast.simple()
+                                                        .content('Salut ' + userFinal.username)
+                                                        .position("bottom")
+                                                        .hideDelay(3000)
+                                                );
+                                            }, function errorCallback(error) {
+                                                console.log(error);
+                                            });
+                                        }
+
                                     } else {
                                         $mdToast.show(
                                             $mdToast.simple()
@@ -124,10 +132,10 @@ angular.module('loginCtrl', [])
 
 
             };
-
-            $scope.chooseUsername = function(){
-                console.log('chooseUsername');
-                $scope.go('app.register');
+            $scope.submitUsername = function(){
+                $scope.formUsernameSubmited = true;
+                console.log($scope.formUsernameSubmited);
+                scope.$digest();
             }
 
             // Choose Username to complete fb profile

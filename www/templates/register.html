@@ -2,13 +2,13 @@
     <md-content scroll="false" layout-padding>
         <h2 class="bleu">Création compte</h2>
 
-        <form ng-submit="">
+        <form ng-submit="submitUsername()">
             <md-input-container>
-                <label>Username</label>
+                <label>Nom d'utilisateur</label>
                 <input id="username" type="text" minlenght="3" ng-model="username">
             </md-input-container>
             <md-input-container>
-                <md-button class="md-raised bouton blanc" type="submit">Accéder à l'application</md-button>
+                <md-button class="md-raised bouton blanc" name="btnSubmitUsername" type="submit">Accéder à l'application</md-button>
             </md-input-container>
         </form>
     </md-content>
