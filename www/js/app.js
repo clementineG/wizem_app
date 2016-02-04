@@ -90,7 +90,7 @@ angular.module('wizem', [
         /************* CONFIG DES PLUGINS À DÉPLACER DANS UN FICHIER *************/
 
         /***** Fitler bar *****/
-        $ionicFilterBarConfigProvider.placeholder("Rechercher");
+        $ionicFilterBarConfigProvider.placeholder("Rechercher ...");
 
         /***** Gallery photos *****/
         ionGalleryConfigProvider.setGalleryConfig({
