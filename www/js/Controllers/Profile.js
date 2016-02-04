@@ -12,7 +12,7 @@ angular.module('profileCtrl', [])
             // On met en place l'image de cover
             if (!$scope.user.cover) {
                 $scope.cover_img = {
-                    "background": "url(img/category/apero.jpg) no-repeat center fixed",
+                    "background": "url(img/bar-1.jpg) no-repeat center fixed",
                     "background-size": "cover"
                 };
             } else {

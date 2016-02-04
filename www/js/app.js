@@ -2,6 +2,8 @@ angular.module('wizem', [
     'ionic',
     'loginCtrl',
     'appCtrl',
+    'chooseTypeEventCtrl',
+    'newEventCtrl',
     'eventCtrl',
     'eventViewCtrl',
     'voteViewCtrl',
@@ -20,6 +22,7 @@ angular.module('wizem', [
     'ionic-datepicker',
     'pascalprecht.translate',
     'uiGmapgoogle-maps',
+    'typeEventBlockDirective',
     'guestBlockDirective',
     'ionic.ion.autoListDivider',
     'jett.ionic.filter.bar',
@@ -168,12 +171,22 @@ angular.module('wizem', [
                 }
             })
 
+            .state('app.chooseType', {
+                url: '/chooseType',
+                views: {
+                    Home: {
+                        templateUrl: 'templates/events/chooseType.html',
+                        controller: 'ChooseTypeEventCtrl'
+                    }
+                }
+            })
+
             .state('app.newEvent', {
                 url: '/newEvent',
                 views: {
                     Home: {
                         templateUrl: 'templates/events/newEvent.html',
-                        controller: 'EventCtrl'
+                        controller: 'NewEventCtrl'
                     }
                 }
             })

@@ -9307,6 +9307,16 @@ ion-content.has-header {
   background-size: cover;
   background-repeat: no-repeat; }
 
+/***** New Event *****/
+.type {
+  width: 80px;
+  height: 80px;
+  box-sizing: content-box;
+  margin-bottom: 0; }
+
+.type-name {
+  color: #046AA3 !important; }
+
 /***** Events *****/
 .date {
   position: relative;

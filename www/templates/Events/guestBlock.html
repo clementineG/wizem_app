@@ -1,5 +1,4 @@
 <img ng-show="user.image" ng-src="{{ user.image }}" class="avatar" ng-class="{ 'border-confirm': borderConfirm, 'border-wainting': borderWaiting, 'border-decline': borderDecline }" />
-<img ng-show="!user.image"  src="img/category/apero.jpg" class="avatar" ng-class="{ 'border-confirm': borderConfirm, 'border-wainting': borderWaiting, 'border-decline': borderDecline }" />
-<!--<a class="button button-icon icon {{userIcon}} margin-top-icon"></a>-->
+<img ng-show="!user.image"  src="img/bar-1.jpg" class="avatar" ng-class="{ 'border-confirm': borderConfirm, 'border-wainting': borderWaiting, 'border-decline': borderDecline }" />
 <p ng-if="user.lastname && user.firstname">{{user.firstname}} {{user.lastname}}</p>
 <p ng-if="!user.lastname || !user.firstname">{{user.username}}</p>

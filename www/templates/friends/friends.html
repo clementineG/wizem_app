@@ -8,7 +8,7 @@
     <md-content class="padding-bottom-content" layout-padding>
             <md-list-item ng-show="!message" ng-repeat="friend in friends | orderBy: 'firstname'" class="item-icon-right">
                 <img ng-show="friend.image" ng-src="{{ friend.image }}" class="md-avatar" />
-                <img ng-show="!friend.image"  src="img/category/apero.jpg" class="md-avatar" />
+                <img ng-show="!friend.image"  src="img/bar-1.jpg" class="md-avatar" />
                 <p ng-if="friend.lastname && friend.firstname">{{friend.firstname}} {{friend.lastname}}</p>
                 <p ng-if="!friend.lastname || !friend.firstname">{{friend.username}}</p>
                 <i class="icon ion-trash-a icon-amber" ng-click="delete(friend.id)"></i>

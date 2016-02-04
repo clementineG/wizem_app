@@ -243,6 +243,19 @@ ion-content.has-header {
 }
 
 
+/***** New Event *****/
+.type {
+  width: 80px;
+  height: 80px;
+  box-sizing: content-box;
+  margin-bottom: 0;
+}
+.type-name {
+  //color: #FFC107 !important;
+  color: #046AA3 !important;
+}
+
+
 /***** Events *****/
 .date {
   position: relative;
