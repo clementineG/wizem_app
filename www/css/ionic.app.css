@@ -9136,6 +9136,12 @@ md-progress-circular .md-spinner-wrapper .md-inner .md-right .md-half-circle {
 .icon-amber {
   color: #FFC107 !important; }
 
+.bg-blue {
+  background-color: #046AA3 !important; }
+
+.bg-amber {
+  background-color: #FFC107 !important; }
+
 /***** Shadows *****/
 .shadow-bottom {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.26); }
@@ -9308,19 +9314,59 @@ ion-content.has-header {
   background-repeat: no-repeat; }
 
 /***** Events *****/
-.date {
+.event_list {
   position: relative;
-  z-index: 2;
-  display: block;
-  margin: 20px 0 20px 10px;
-  border: 1px #dddddd solid;
-  border-radius: 25px;
-  max-height: 45px !important;
-  max-width: 45px !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
-
-.card {
-  margin: 10px; }
+  margin-bottom: -10px; }
+  .event_list .date {
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin: 10px 20px 40px 10px;
+    border: 1px #dddddd solid;
+    border-radius: 25px;
+    max-height: 45px !important;
+    max-width: 45px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    background-color: #143F56; }
+    .event_list .date img {
+      width: 80%;
+      margin-top: 4px; }
+  .event_list .card {
+    margin: 10px;
+    border-radius: 5px;
+    overflow: auto; }
+  .event_list .card_event {
+    padding: 10px;
+    border-radius: 5px;
+    overflow: visible;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 0;
+    background-color: #143F56; }
+    .event_list .card_event:before {
+      background-image: url("/img/triangle.svg");
+      content: " ";
+      position: absolute;
+      height: 40px;
+      width: 20px;
+      top: 6px;
+      left: -15px; }
+    .event_list .card_event h2, .event_list .card_event p {
+      color: #EBEEF0; }
+    .event_list .card_event h2 {
+      font-weight: 500;
+      margin-bottom: 6px; }
+    .event_list .card_event p {
+      font-size: 12px; }
+      .event_list .card_event p i {
+        font-size: 13px;
+        color: #FFC107; }
+  .event_list #timeline {
+    height: 100%;
+    width: 10px;
+    background-color: #FFC107;
+    left: 28px;
+    top: 10px;
+    position: absolute; }
 
 /***** Event view *****/
 .angular-google-map-container {
