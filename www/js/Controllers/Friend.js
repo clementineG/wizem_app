@@ -33,10 +33,13 @@ angular.module('friendCtrl', [])
             FriendService.delete(userId, id);
 
             // On le supprime du $scope pour mettre à jour la page en direct
+            //var friend = _.findIndex($scope.friends, { id: id });
+            //_.remove($scope.friends, function(item) {
+            //    return item.id == friend;
+            //});
+            //var friend = _.findIndex($scope.friends, { id: id });
             var friend = _.findIndex($scope.friends, { id: id });
-            _.remove($scope.friends, function(item) {
-                return item.id == friend;
-            });
+            $scope.friends.splice(friend);
         }
 
     }]);
