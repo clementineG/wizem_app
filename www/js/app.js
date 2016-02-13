@@ -16,6 +16,7 @@ angular.module('wizem', [
     'ngCordovaOauth',
     'restangular',
     'userService',
+    'eventService',
     'mapService',
     'friendService',
     'ngMessages',
@@ -26,7 +27,8 @@ angular.module('wizem', [
     'guestBlockDirective',
     'ionic.ion.autoListDivider',
     'jett.ionic.filter.bar',
-    'ion-gallery'
+    'ion-gallery',
+    'ion-datetime-picker'
 ])
 
     .run(function($ionicPlatform, UserService, $state, $rootScope, $cordovaStatusbar) {
@@ -182,7 +184,7 @@ angular.module('wizem', [
             })
 
             .state('app.newEvent', {
-                url: '/newEvent',
+                url: '/newEvent/:eventId',
                 views: {
                     Home: {
                         templateUrl: 'templates/events/newEvent.html',

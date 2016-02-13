@@ -1,5 +1,43 @@
-<ion-view view-title="Créer un nouvel event">
+<ion-view>
+
+    <ion-nav-bar class="bar-clear" ng-show="!isLoading">
+        <ion-nav-back-button ng-click="myGoBack()" class="back-button-map" style="margin-top:8px;margin-left:8px;"></ion-nav-back-button>
+    </ion-nav-bar>
+
     <md-content class="padding-bottom-content">
+        <div class="cover_event text-center" ng-style="cover_img" flex>
+            <h1 class="title_event">{{event.typeEvent}}</h1>
+        </div>
+
+        <div layout="row" class="border-bottom padding">
+            <a class="button button-icon icon ion-calendar no-padding icon-event"></a>
+            <span ng-if="event.date.final" flex class="margin-left" style="padding-top:13px;">{{event.date.final.date | date:'dd MMMM yyyy - HH'}} h {{event.date.final.date | date:'mm'}}</span>
+            <div class="date-input">
+                <div class="row" flex>
+                    <div flex="25">
+                        <md-button ng-if="dates.length < 3" class="md-primary color-blue" ng-click="datetime()">Quand ?</md-button>
+                    </div>
+                    <div flex="75">
+                        <ion-list>
+                            <ion-item ng-repeat="date in dates">
+                                {{date| date: "dd-MM-yyyy H:mm:ss"}}
+                                <a class="button button-icon icon ion-close-round no-padding" ng-click="removeDate(index)"></a>
+                            </ion-item>
+                        </ion-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div layout="row" class="padding">
+            <div class="padding-left">
+                <a class="button button-icon icon ion-location no-padding icon-event"></a>
+            </div>
+            <span ng-if="event.place.final" flex class="margin-left padding-top-min">{{event.place.final.address}}</span>
+            <div class="place-input">
+                <md-button class="md-primary color-blue">Où ?</md-button>
+            </div>
+        </div>
 
     </md-content>
 </ion-view>

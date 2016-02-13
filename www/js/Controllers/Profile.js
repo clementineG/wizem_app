@@ -12,7 +12,7 @@ angular.module('profileCtrl', [])
             // On met en place l'image de cover
             if (!$scope.user.cover) {
                 $scope.cover_img = {
-                    "background": "url(img/bar-1.jpg) no-repeat center fixed",
+                    "background": "url(img/bar-1.jpg) no-repeat center",
                     "background-size": "cover"
                 };
             } else {
@@ -54,6 +54,7 @@ angular.module('profileCtrl', [])
                 } else {
                     $scope.datepickerBirthday.inputDate = val;
                     $scope.user.birthDate = val;
+                    console.log(val);
                 }
             }
         };

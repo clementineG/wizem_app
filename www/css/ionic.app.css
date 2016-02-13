@@ -9147,9 +9147,16 @@ textarea, input[type="text"], input[type="password"], input[type="number"], inpu
 md-input-container:not(.md-input-invalid).md-input-focused .md-input {
   border-color: #046AA3; }
 
+/***** Colors *****/
+.color-blue {
+  color: #046AA3 !important; }
+
 /***** Border *****/
 .no-border {
   border: none !important; }
+
+.border-bottom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
 
 /***** Margin *****/
 .no-margin {
@@ -9316,6 +9323,83 @@ ion-content.has-header {
 
 .type-name {
   color: #046AA3 !important; }
+
+.cover_event {
+  width: 100%;
+  min-height: 200px;
+  max-height: 200px;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  z-index: 1;
+  position: relative; }
+
+.title_event {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  color: #EBEEF0; }
+
+.icon-event:before {
+  font-size: 50px !important; }
+
+.date-input, .place-input {
+  padding-top: 7px;
+  width: 100%; }
+
+.ion-datetime-picker-popup .popup {
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+  max-height: 100%; }
+
+.ion-datetime-picker-popup .popup .popup-head {
+  background-color: #046AA3; }
+
+.ion-datetime-picker-popup .popup .popup-head .popup-title {
+  color: #FFFFFF; }
+
+.ion-datetime-picker-popup .popup .popup-body {
+  margin-top: 50px; }
+
+.ion-datetime-picker .calendar .day.selected, .ion-datetime-picker .calendar .day.selected:hover, .ion-datetime-picker .calendar .day.selected.activated {
+  background-color: #FFC107; }
+
+.ion-datetime-picker .month-year {
+  margin-bottom: 20px; }
+
+.row + .row {
+  margin-top: 0; }
+
+.ion-datetime-picker-popup .button.button-positive.button-clear {
+  color: #046AA3; }
+
+.ion-datetime-picker .month-year .item-input select {
+  padding-left: 10px;
+  font-weight: bold; }
+
+.ion-datetime-picker .month-year .item-input input {
+  color: #333333;
+  font-weight: bold; }
+
+.ion-datetime-picker .calendar .col {
+  font-size: 14px; }
+
+.ion-datetime-picker .time .item-input input {
+  color: #333333; }
+
+.ion-datetime-picker-popup .popup .popup-buttons {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0;
+  background-color: #046AA3;
+  min-height: 0; }
+
+.ion-datetime-picker-popup .popup .popup-buttons .button {
+  background-color: transparent;
+  border-color: transparent;
+  color: #FFFFFF; }
 
 /***** Events *****/
 .date {

@@ -19,6 +19,7 @@
     "angular-translate-loader-static-files": "~2.8.1",
     "angular-google-maps": "~2.2.1",
     "ionic-filter-bar": "~1.1.1",
-    "ion-gallery": "~0.1.12"
+    "ion-gallery": "~0.1.12",
+    "ion-datetime-picker": "^0.1.2"
   }
 }

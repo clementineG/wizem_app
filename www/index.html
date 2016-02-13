@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="lib/angular-material/angular-material.css">
         <link rel="stylesheet" href="lib/ionic-filter-bar/dist/ionic.filter.bar.css">
         <link rel="stylesheet" href="lib/ion-gallery/dist/ion-gallery.css">
+        <link rel="stylesheet" href="lib/ion-datetime-picker/release/ion-datetime-picker.min.css">
         <link rel="stylesheet" href="css/ionic.app.css">
 
         <!-- ionic/angularjs js -->
@@ -37,6 +38,7 @@
         <script src="lib/momentjs/min/moment.min.js"></script>
         <script src="lib/ionic-filter-bar/dist/ionic.filter.bar.min.js"></script>
         <script src="lib/ion-gallery/dist/ion-gallery.min.js"></script>
+        <script src="lib/ion-datetime-picker/release/ion-datetime-picker.min.js"></script>
 
         <!-- Controllers JS -->
         <script src="js/app.js"></script>
@@ -59,6 +61,7 @@
 
         <!-- Services JS -->
         <script src="js/Services/UserService.js"></script>
+        <script src="js/Services/EventService.js"></script>
         <script src="js/Services/MapService.js"></script>
         <script src="js/Services/FriendService.js"></script>
     </head>
@@ -80,6 +83,13 @@
                         notificationOpenedCallback);
 
                 window.plugins.OneSignal.enableInAppAlertNotification(true);
+
+                window.plugins.OneSignal.getIds(function(ids) {
+                    document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
+                    document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
+                    console.log('getIds: ' + JSON.stringify(ids));
+                });
+
             }, false);
         </script>
     </body>

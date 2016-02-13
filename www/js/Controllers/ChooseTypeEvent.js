@@ -20,8 +20,8 @@ angular.module('chooseTypeEventCtrl', [])
         $scope.createEvent = function(id) {
             var data = {"userId": userId, "typeevent": id};
 
-            CreateEvent.post(data).then(function (event) {
-                console.log(event);
+            CreateEvent.post(data).then(function (eventId) {
+                $state.go('app.newEvent', {"eventId": eventId});
             }, function errorCallback(error) {
                 console.log(error);
             });
