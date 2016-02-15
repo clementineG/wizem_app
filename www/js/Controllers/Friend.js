@@ -35,11 +35,34 @@ angular.module('friendCtrl', [])
             // On le supprime du $scope pour mettre à jour la page en direct
             //var friend = _.findIndex($scope.friends, { id: id });
             //_.remove($scope.friends, function(item) {
-            //    return item.id == friend;
+            //    return item.id == key;
             //});
+            //var tab_friends = [];
+            //tab_friends = $scope.friends;
+
+            //var array = [1, 2, 3, 4];
+            //var result = _.remove(tab_friends, function(n) {
+            //    if(n.id ==id)
+            //        $scope.friends.splice(n);
+            //        //console.log(n);
+            //    //return n % 2 == 0;
+            //});
+            var a = _.filter($scope.friends, { 'id': id });
+            console.log(a);
+            var result = _.difference($scope.friends, a);
+//            var result = _.without(tab_friends, tab_friends[key]).then  ;
+$scope.friends = result;
+            console.log($scope.friends);
+            //$scope.friends.splice(key, 1);
+            //console.log($scope.friends);
+            //$scope.$apply();
             //var friend = _.findIndex($scope.friends, { id: id });
-            var friend = _.findIndex($scope.friends, { id: id });
-            $scope.friends.splice(friend);
+            //var index = $scope.friends.indexOf(key);
+            //$scope.friends.all().then(func)
+            //console.log('id_friend'+id);
+            //console.log($scope.friends);
+            //console.log($scope.friends.id)
+            ////$scope.friends.splice(friend);
         }
 
     }]);
