@@ -547,6 +547,10 @@ button.back-button-map i:before {
   display: inline-block;
 }
 
+input[type="search"] {
+  color: $wizem_darkblue !important;
+}
+
 /***** Profile *****/
 .cover_profile {
   position: absolute;
@@ -727,3 +731,4 @@ md-input-container label {
 .md-button {
   margin: 0;
 }
+

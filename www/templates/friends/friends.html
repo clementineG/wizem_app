@@ -11,21 +11,7 @@
                 <img ng-show="!friend.image"  src="img/category/apero.jpg" class="md-avatar" />
                 <p ng-if="friend.lastname && friend.firstname">{{friend.firstname}} {{friend.lastname}}</p>
                 <p ng-if="!friend.lastname || !friend.firstname">{{friend.username}}</p>
-                <i class="icon ion-trash-a icon-amber" ng-click="delete(friend.id,key)"></i>
+                <i class="icon ion-trash-a icon-amber" ng-click="delete(friend.id)"></i>
             </md-list-item>
-
-            <!--<ion-list ng-show="!message" class="margin-bottom">-->
-                <!--<div auto-list-divider auto-list-divider-value="{{ friend.firstname }}" class="item item-icon-right" ng-repeat="friend in friends | orderBy:'firstname'">-->
-                    <!--<img ng-show="friend.image"  ng-src="{{ friend.image }}" class="friend-avatar" />-->
-                    <!--<img ng-show="!friend.image"  src="img/category/apero.jpg" class="friend-avatar" />-->
-                    <!--<h2 ng-if="friend.firstname" class="friend-name">{{friend.firstname}} {{friend.lastname}}</h2>-->
-                    <!--<h2 ng-if="!friend.firstname" class="friend-name">{{friend.username}}</h2>-->
-                    <!--<i class="icon ion-trash-a icon-blue" ng-click="delete(friend.id)"></i>-->
-                <!--</div>-->
-            <!--</ion-list>-->
-
-            <div ng-show="message" class="text-center">
-                <h4>{{message}}</h4>
-            </div>
     </md-content>
 </ion-view>

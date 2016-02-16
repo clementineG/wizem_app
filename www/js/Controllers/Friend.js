@@ -13,16 +13,15 @@ angular.module('friendCtrl', [])
 
             $scope.showFilterBar = function () {
                 filterBarInstance = $ionicFilterBar.show({
-                    friends: $scope.friends,
-                    update: function (filteredItems, filterText) {
-                        $scope.friends = filteredItems;
-                        if (filterText) {
-                            console.log(filterText);
-                        }
+                    items: $scope.friends,
+                    update: function (filteredItems) {
+                        //Update your list
+                        $scope.friends= filteredItems;
                     },
                     cancelText: "Annuler"
-                });
+                })
             };
+
 
             $scope.dividerFunction = function (key) {
                 return key;
@@ -37,6 +36,6 @@ angular.module('friendCtrl', [])
                 var result = _.difference($scope.friends, a);
 
                 $scope.friends = result;
-            }
+            };
 
         }]);
