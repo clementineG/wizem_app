@@ -547,8 +547,9 @@ button.back-button-map i:before {
   display: inline-block;
 }
 
-input[type="search"] {
+.bar.item-input-inset .item-input-wrapper input {
   color: $wizem_darkblue !important;
+
 }
 
 /***** Profile *****/

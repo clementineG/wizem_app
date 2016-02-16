@@ -9519,6 +9519,9 @@ button.back-button-map i:before {
 .friend-name {
   display: inline-block; }
 
+.bar.item-input-inset .item-input-wrapper input {
+  color: #143F56 !important; }
+
 /***** Profile *****/
 .cover_profile {
   position: absolute;
