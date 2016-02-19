@@ -7,6 +7,6 @@ angular.module('appCtrl', [])
         //UserService.getUser().then(function(user) {
         //    console.log(user);
         //});
-            console.log('cono');
+        //    console.log('cono');
 
     }]);

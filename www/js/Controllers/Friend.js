@@ -17,6 +17,7 @@ angular.module('friendCtrl', [])
                     update: function (filteredItems) {
                         //Update your list
                         $scope.friends= filteredItems;
+                        //$scope.message = "Aucun utilisateur ne correspond à cet identifiant."
                     },
                     cancelText: "Annuler"
                 })

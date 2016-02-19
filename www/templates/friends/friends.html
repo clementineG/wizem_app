@@ -6,12 +6,23 @@
     </ion-nav-buttons>
 
     <md-content class="padding-bottom-content" layout-padding>
-            <md-list-item ng-show="!message" ng-repeat="friend in friends | orderBy: 'firstname'" class="item-icon-right">
-                <img ng-show="friend.image" ng-src="{{ friend.image }}" class="md-avatar" />
-                <img ng-show="!friend.image"  src="img/category/apero.jpg" class="md-avatar" />
-                <p ng-if="friend.lastname && friend.firstname">{{friend.firstname}} {{friend.lastname}}</p>
-                <p ng-if="!friend.lastname || !friend.firstname">{{friend.username}}</p>
-                <i class="icon ion-trash-a icon-amber" ng-click="delete(friend.id)"></i>
-            </md-list-item>
+        <div ng-show="message" class="text-center">
+            <h4>{{message}}</h4>
+        </div>
+        <md-list-item  ng-repeat="friend in friends | orderBy: 'firstname'" class="item-icon-right">
+            <img ng-show="friend.image" ng-src="{{ friend.image }}" class="md-avatar"/>
+            <img ng-show="!friend.image" src="img/category/apero.jpg" class="md-avatar"/>
+            <p ng-if="friend.lastname && friend.firstname">{{friend.firstname}} {{friend.lastname}}</p>
+            <p ng-if="!friend.lastname || !friend.firstname">{{friend.username}}</p>
+            <i class="icon ion-trash-a icon-amber" ng-click="delete(friend.id)"></i>
+        </md-list-item>
     </md-content>
+
+
+    <div class="fab_add_friend">
+        <md-button class="md-fab md-fab-bottom-right md-mini md-primary" aria-label="Add a friend"
+                   ui-sref="app.friendAdd">
+            <a class="button button-icon icon ion-plus button-calm no-padding no-border size-medium"></a>
+        </md-button>
+    </div>
 </ion-view>

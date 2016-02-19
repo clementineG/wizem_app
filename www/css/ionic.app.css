@@ -9522,6 +9522,50 @@ button.back-button-map i:before {
 .bar.item-input-inset .item-input-wrapper input {
   color: #143F56 !important; }
 
+.fab_add_friend .md-fab-bottom-right {
+  bottom: 100px !important;
+  background-color: #046AA3 !important; }
+
+.findUserCard .md-headline {
+  margin-left: 16px !important; }
+
+.findUserCard md-card-actions {
+  float: right; }
+  .findUserCard md-card-actions i {
+    font-size: 25px; }
+  .findUserCard md-card-actions span {
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: currentColor;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+    outline: none;
+    border: 0;
+    display: inline-block;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 6px;
+    margin: 6px 8px;
+    line-height: 36px;
+    min-height: 36px;
+    background: transparent;
+    white-space: nowrap;
+    min-width: 88px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    font-style: inherit;
+    font-variant: inherit;
+    font-family: inherit;
+    text-decoration: none;
+    overflow: hidden;
+    margin: 0; }
+
 /***** Profile *****/
 .cover_profile {
   position: absolute;

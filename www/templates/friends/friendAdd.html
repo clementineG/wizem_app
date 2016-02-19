@@ -1,0 +1,36 @@
+<ion-view view-title="Ajouter un amis">
+
+    <div class="bar bar-header item-input-inset">
+        <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="Username" ng-change="searchUser()" ng-model="username">
+        </label>
+        <button class="button button-clear" ng-click="clearInputUsername()">
+            Effacer
+        </button>
+    </div>
+
+    <md-content>
+        <div ng-show="message" class="text-center">
+            <h4>{{message}}</h4>
+        </div>
+        <md-card class="findUserCard" ng-if="displayUserFind">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline"> {{matchedUser.friendUsername}} </span>
+                    <md-card-actions ng-if="displayUserAddButton">
+                        <md-button>
+                            <i class="icon ion-android-person-add icon-blue"
+                                      ng-click="addFriend(matchedUser.friendUsername)"></i>
+                        </md-button>
+                    </md-card-actions>
+                    <md-card-actions ng-if="displayUserFriend">
+                        <span>
+                            <i class="icon ion-android-done icon-blue"></i>
+                        </span>
+                    </md-card-actions>
+                </md-card-title-text>
+            </md-card-title>
+        </md-card>
+    </md-content>
+</ion-view>

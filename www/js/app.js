@@ -1,52 +1,53 @@
 angular.module('wizem', [
-    'ionic',
-    'loginCtrl',
-    'appCtrl',
-    'eventCtrl',
-    'eventViewCtrl',
-    'voteViewCtrl',
-    'allUsersEventCtrl',
-    'galleryEventCtrl',
-    'profileCtrl',
-    'friendCtrl',
-    'ngMaterial',
-    'ngCordova',
-    'ngCordovaOauth',
-    'restangular',
-    'userService',
-    'mapService',
-    'friendService',
-    'ngMessages',
-    'ionic-datepicker',
-    'pascalprecht.translate',
-    'uiGmapgoogle-maps',
-    'guestBlockDirective',
-    'ionic.ion.autoListDivider',
-    'jett.ionic.filter.bar',
-    'ion-gallery'
-])
+        'ionic',
+        'loginCtrl',
+        'appCtrl',
+        'eventCtrl',
+        'eventViewCtrl',
+        'voteViewCtrl',
+        'allUsersEventCtrl',
+        'galleryEventCtrl',
+        'profileCtrl',
+        'friendCtrl',
+        'friendAddCtrl',
+        'ngMaterial',
+        'ngCordova',
+        'ngCordovaOauth',
+        'restangular',
+        'userService',
+        'mapService',
+        'friendService',
+        'ngMessages',
+        'ionic-datepicker',
+        'pascalprecht.translate',
+        'uiGmapgoogle-maps',
+        'guestBlockDirective',
+        'ionic.ion.autoListDivider',
+        'jett.ionic.filter.bar',
+        'ion-gallery'
+    ])
 
-    .run(function($ionicPlatform, UserService, $state, $rootScope, $cordovaStatusbar) {
-        $ionicPlatform.ready(function() {
+    .run(function ($ionicPlatform, UserService, $state, $rootScope, $cordovaStatusbar) {
+        $ionicPlatform.ready(function () {
 
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
-            if (window.cordova && window.cordova.plugins.Keyboard) {
-                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
-                cordova.plugins.Keyboard.disableScroll(false);
-                cordova.plugins.Keyboard.hideFormAccessoryBar(true);
-
-            }
+            //if (window.cordova && window.cordova.plugins.Keyboard) {
+            //    cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+            //    cordova.plugins.Keyboard.disableScroll(false);
+            //    cordova.plugins.Keyboard.hideFormAccessoryBar(true);
+            //
+            //}
 
             $cordovaStatusbar.styleHex('#EBEEF0');
 
             //if (window.StatusBar) {
-                // org.apache.cordova.statusbar required
-                //StatusBar.styleDefault();
+            // org.apache.cordova.statusbar required
+            //StatusBar.styleDefault();
             //}
 
             $rootScope.$on('$stateChangeError',
-                function(event, toState, toParams, fromState, fromParams, error) {
+                function (event, toState, toParams, fromState, fromParams, error) {
                     if (error && error.error === "noUser") {
                         $state.go('login');
                     }
@@ -56,8 +57,8 @@ angular.module('wizem', [
         });
     })
 
-    .config(function($stateProvider, $urlRouterProvider, $mdIconProvider, $ionicConfigProvider, ionGalleryConfigProvider,
-                     RestangularProvider, $translateProvider, uiGmapGoogleMapApiProvider, $ionicFilterBarConfigProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $mdIconProvider, $ionicConfigProvider, ionGalleryConfigProvider,
+                      RestangularProvider, $translateProvider, uiGmapGoogleMapApiProvider, $ionicFilterBarConfigProvider) {
 
         /***** Icon's config *****/
         $mdIconProvider.defaultIconSet('/img/icons/mdi.svg');
@@ -77,9 +78,9 @@ angular.module('wizem', [
 
         /************* CONFIG DEE L'API À DÉPLACER DANS UN FICHIER *************/
 
-        //API local
-        //RestangularProvider.setBaseUrl('http://localhost/ESTEI_M2/wizem_site/web/app_dev.php/api/');
-        //API wizem.fr
+            //API local
+            //RestangularProvider.setBaseUrl('http://localhost/ESTEI_M2/wizem_site/web/app_dev.php/api/');
+            //API wizem.fr
         RestangularProvider.setBaseUrl('http://wizem.fr/api/');
         RestangularProvider.setDefaultHeaders({"Content-type": "application/json"});
         RestangularProvider.setRequestSuffix('.json');
@@ -122,12 +123,12 @@ angular.module('wizem', [
                 abstract: true,
                 templateUrl: 'templates/menu.html',
                 controller: 'LoginCtrl',
-                    resolve: {
-                        user: function(UserService) {
-                            var value = UserService.init();
-                            return value;
-                        }
+                resolve: {
+                    user: function (UserService) {
+                        var value = UserService.init();
+                        return value;
                     }
+                }
             })
 
             .state('app.home', {
@@ -246,10 +247,19 @@ angular.module('wizem', [
                         controller: 'FriendCtrl'
                     }
                 }
+            })
+            .state('app.friendAdd', {
+                url: '/friends/add',
+                views: {
+                    Home: {
+                        templateUrl: 'templates/friends/friendAdd.html',
+                        controller: 'FriendAddCtrl'
+                    }
+                }
             });
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('home');
+        $urlRouterProvider.otherwise('login');
 
         /*************************************************************************/
     });
