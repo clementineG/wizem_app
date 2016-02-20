@@ -17,47 +17,62 @@ angular.module('friendAddCtrl', [])
 
             $scope.searchUser = function () {
                 $scope.matchedUser = undefined;
-                UserFind.post({'username': $scope.username}).then(function (friend) {
-                    $scope.message = undefined;
-                    $scope.matchedUser = friend;
-                    $scope.displayUserFind = true;
-                    console.log(friend);
-                    if (!friend.areFriends) {
-                        //display add button
-                        $scope.displayUserAddButton = true;
-                        $scope.displayUserFriend = false;
 
-                    } else {
-                        $scope.displayUserAddButton = false;
-                        $scope.displayUserFriend = true;
-                    }
+                if ($scope.username.length > 0) {
+                    UserFind.post({'username': $scope.username}).then(function (friend) {
+                            $scope.message = undefined;
+                            $scope.matchedUser = friend;
+                            $scope.displayUserFind = true;
+                            console.log(friend);
+                            if (!friend.areFriends) {
+                                //display add button
+                                $scope.displayUserAddButton = true;
+                                $scope.displayUserFriend = false;
 
-                }, function errorCallback(error) {
-                    console.log(error.data);
+                            } else {
+                                $scope.displayUserAddButton = false;
+                                $scope.displayUserFriend = true;
+                            }
+                        },
+                        function errorCallback(error) {
+                            console.log(error.data);
+                            $scope.displayUserFind = false;
+
+                            if (error.data.message == 'Friend not found')
+                                $scope.message = "Aucun utilisateur ne correspond à cet identifiant.";
+                            else if (error.data.message == 'Invalid username')
+                                $scope.message = "";
+                            else
+                                $scope.message = "Problème réseau, veuillez réésayer";
+
+                        }
+                    );
+                }else{
                     $scope.displayUserFind = false;
+                }
 
-                    if (error.data.message == 'Friend not found')
-                        $scope.message = "Aucun utilisateur ne correspond à cet identifiant.";
-                    else if (error.data.message == 'Invalid username')
-                        $scope.message = "";
-                    else
-                        $scope.message = "Problème réseau, veuillez réésayer";
-
-                });
-            };
-            $scope.clearInputUsername = function () {
-                $scope.username = undefined;
-                $scope.matchedUser = undefined;
             };
 
-            $scope.addFriend = function (username) {
-                console.log(username);
-                FriendAdd.post({'username': $scope.username}).then(function (complete) {
-                    console.log('complete')
-                    console.log(complete)
-                }, function errorCallback(error) {
-                    console.log('error')
-                    console.log(error)
-                });
+                $scope.clearInputUsername = function () {
+                    $scope.username = undefined;
+                    $scope.matchedUser = undefined;
+                };
+
+                $scope.addFriend = function (username) {
+                    console.log(username);
+                    FriendAdd.post({'username': $scope.username}).then(function (complete) {
+                        console.log('complete')
+                        console.log(complete)
+                        FriendService.getAll().then(function (result) {
+                            $scope.friends = result.friends;
+                            //(typeof result.message === "undefined") ? $scope.friends = result.friends : $scope.message = result.message;
+                        });
+                        //$scope.friends = complete;
+                    }, function errorCallback(error) {
+                        console.log('error')
+                        console.log(error)
+                    });
+                }
             }
-        }]);
+            ])
+;

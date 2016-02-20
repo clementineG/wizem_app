@@ -1,13 +1,15 @@
 angular.module('friendCtrl', [])
 
-    .controller('FriendCtrl', ['$scope', '$stateParams', 'UserService', 'FriendService', 'Restangular', '$state', '$ionicFilterBar',
-        function ($scope, $stateParams, UserService, FriendService, Restangular, $state, $ionicFilterBar) {
+    .controller('FriendCtrl', ['$scope', '$stateParams', 'UserService', 'FriendService', 'Restangular', '$state', '$ionicFilterBar','$mdToast',
+        function ($scope, $stateParams, UserService, FriendService, Restangular, $state, $ionicFilterBar,$mdToast) {
 
             var userId = UserService.getId();
             var filterBarInstance;
 
             // On récupère tous les amis
             FriendService.getAll().then(function (result) {
+                console.log(result);
+
                 (typeof result.message === "undefined") ? $scope.friends = result.friends : $scope.message = result.message;
             });
 
@@ -16,7 +18,7 @@ angular.module('friendCtrl', [])
                     items: $scope.friends,
                     update: function (filteredItems) {
                         //Update your list
-                        $scope.friends= filteredItems;
+                        $scope.friends = filteredItems;
                         //$scope.message = "Aucun utilisateur ne correspond à cet identifiant."
                     },
                     cancelText: "Annuler"
@@ -38,5 +40,32 @@ angular.module('friendCtrl', [])
 
                 $scope.friends = result;
             };
+
+            $scope.acceptFriendRequest = function (friendId) {
+                var UserFind = Restangular.all('users/' + userId + '/friends/' + friendId + '/confirms');
+                UserFind.post({'confirm': 1}).then(function (confirm) {
+
+                        console.log('confirmé')
+                        console.log(confirm)
+                        //$scope.isLoading = false;
+
+                        $mdToast.show(
+                            $mdToast.simple()
+                                .content('Amitié confirmée.')
+                                .position("bottom")
+                                .hideDelay(3000)
+                        );
+                        FriendService.getAll().then(function (result) {
+                            console.log(result);
+
+                            (typeof result.message === "undefined") ? $scope.friends = result.friends : $scope.message = result.message;
+                        });
+                    },
+                    function errorCallback(error) {
+                        console.log(error.data);
+                    }
+                );
+
+            }
 
         }]);
